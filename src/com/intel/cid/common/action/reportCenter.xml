@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+		"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="reportCenter" extends="struts-default,jasperreports-default,jfreechart-default">
+		<interceptors>
+			<interceptor name="tmsInterceptor"
+				class="com.intel.cid.common.interceptor.TMSInterceptor" />
+				
+			<interceptor name="parameterFilter"  
+                class="com.opensymphony.xwork2.interceptor.ParameterFilterInterceptor" />
+			<interceptor-stack name="tmsInterceptorStack">
+				<interceptor-ref name="tmsInterceptor">
+					<param name="excludeMethods">logout</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="parameterFilter" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="tmsInterceptorStack" />
+		<global-results>
+			<result name="error">/WEB-INF/jsp/error/error.jsp</result>
+			<result name="login">/WEB-INF/jsp/login/tologin.jsp</result>
+		</global-results>
+		
+		<!-- New added functions Begin-->
+		<!-- ==============================================Report action========================================================-->
+		<action name="singleExecutionReport" class="reportCenterAction" method="singleExecutionReport">
+			<result name="success">/WEB-INF/jsp/report/singleExecutionReport.jsp</result>
+		</action>
+		
+		<action name="testExecutionPie" class="reportCenterAction" method="testExecutionPie">
+			<result name="success" type="chart">
+				<param name="width">600</param>
+				<param name="height">400</param>
+			</result>
+		</action>
+		
+		<action name="testExecutionBar" class="reportCenterAction" method="testExecutionBar">
+			<result name="success" type="chart">
+				<param name="width">1200</param>
+				<param name="height">450</param>
+			</result>
+		</action>
+
+		<action name="executeStatusLine" class="reportCenterAction" method="executeStatusLine">
+			<result name="success" type="chart">
+				<param name="width">1000</param>
+				<param name="height">450</param>
+			</result>
+		</action>
+		
+		<action name="executionReportChartingFrame" class="reportCenterAction" method="executionReportChartingFrame">
+			<result name="success">/WEB-INF/jsp/report/executionReportChartingFrame.jsp
+			</result>
+		</action>
+		
+		<action name="executionReportChartingDetail" class="reportCenterAction" method="executionReportChartingDetail">
+		    <param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/report/executionReportChartingDetail.jsp
+			</result>
+		</action>
+		
+		<action name="subExecutionReportChartingDetail" class="reportCenterAction" method="subExecutionReportChartingDetail">
+		    <param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/report/subExecutionReportChartingDetail.jsp
+			</result>
+		</action>
+		
+		<action name="caseHealthyReport" class="reportCenterAction" method="caseHealthyReport">
+		    <param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/report/caseHealthyReport.jsp
+			</result>
+		</action>
+		
+		<action name="performanceAnalysis" class="reportCenterAction" method="performanceAnalysis">
+		    <param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/report/performanceAnalysis.jsp
+			</result>
+		</action>
+		
+		<action name="executionTrendChartingFrame" class="reportCenterAction" method="executionTrendChartingFrame">
+			<result name="success">/WEB-INF/jsp/report/executionTrendChartingFrame.jsp
+			</result>
+		</action>
+		
+		<action name="executionTrendChartingDetail" class="reportCenterAction" method="executionTrendChartingDetail">
+			<result name="success">/WEB-INF/jsp/report/executionTrendChartingDetail.jsp
+			</result>
+		</action>
+		<!--===============================================Performance action===========================================-->
+		<action name="executionPerformanceChartingFrame" class="reportCenterAction" method="executionPerformanceChartingFrame">
+			<result name="success">/WEB-INF/jsp/performance/executionPerformanceChartingFrame.jsp</result>
+		</action>
+		<action name="executionPerformance1DChartingDetail" class="reportCenterAction" method="executionPerformance1DChartingDetail">
+			<result name="success">/WEB-INF/jsp/performance/executionPerformance1DChartingDetail.jsp</result>
+		</action>
+		<action name="executionPerformance2DChartingDetail" class="reportCenterAction" method="executionPerformance2DChartingDetail">
+			<result name="success">/WEB-INF/jsp/performance/executionPerformance2DChartingDetail.jsp</result>
+		</action>
+		<action name="analyzePerformanceByAttribute1D" class="reportCenterAction" method="analyzePerformanceByAttribute1D">
+			<result name="success">/WEB-INF/jsp/performance/analyzePerformanceByAttribute1D.jsp</result>
+		</action>
+		<action name="analyzePerformanceByAttribute2DChart1" class="reportCenterAction" method="analyzePerformanceByAttribute2DChart1">
+			<result name="success">/WEB-INF/jsp/performance/analyzePerformanceByAttribute2D.jsp</result>
+		</action>
+		<action name="analyzePerformanceByAttribute2DChart2" class="reportCenterAction" method="analyzePerformanceByAttribute2DChart2">
+			<result name="success">/WEB-INF/jsp/performance/analyzePerformanceByAttribute2D.jsp</result>
+		</action>
+		<action name="analyzePerformanceByAttribute2DChartLine1" class="reportCenterAction" method="analyzePerformanceByAttribute2DChartLine1">
+			<result name="success">/WEB-INF/jsp/performance/analyzePerformanceByAttribute2DLine.jsp</result>
+		</action>
+		<action name="analyzePerformanceByAttribute2DChartLine2" class="reportCenterAction" method="analyzePerformanceByAttribute2DChartLine2">
+			<result name="success">/WEB-INF/jsp/performance/analyzePerformanceByAttribute2DLine.jsp</result>
+		</action>
+		<action name="analyzePerformanceByCase1D" class="reportCenterAction" method="analyzePerformanceByCase1D">
+			<result name="success">/WEB-INF/jsp/performance/analyzePerformanceByCase1D.jsp</result>
+		</action>
+		<action name="analyzePerformanceByExecutionLine1D" class="reportCenterAction" method="analyzePerformanceByExecutionLine1D">
+			<result name="success">/WEB-INF/jsp/performance/analyzePerformanceByExecutionLine1D.jsp</result>
+		</action>
+		<action name="analyzePerformanceByExecutionBar1D" class="reportCenterAction" method="analyzePerformanceByExecutionBar1D">
+			<result name="success">/WEB-INF/jsp/performance/analyzePerformanceByExecutionBar1D.jsp</result>
+		</action>
+		<!-- New added functions End -->
+		
+		<action name="report_week" class="reportCenterAction" method="report_week">
+			<result name="success">/WEB-INF/jsp/report/CrossCycles/report_week.jsp</result>
+		</action>
+		
+		<action name="report_generate_releaseCycle" class="reportCenterAction" method="report_generate_releaseCycle">
+			<result type="jasper" name="success">
+				<param name="location">/ReportTemplate/report8.jasper</param>
+				<param name="dataSource">releaseCycleList</param>
+				<param name="reportParameters">releaseCycleMap</param>
+				<param name="format">HTML</param>
+				<param name="imageServletUrl"><![CDATA[/image?image=]]></param>
+			</result>
+		</action>		
+		
+		<action name="report_generate_releaseCycle1" class="reportCenterAction" method="report_generate_releaseCycle">
+			<result name="success">/WEB-INF/jsp/report/CrossCycles/report_CrossCycles.jsp</result>
+		</action>
+		<action name="report_toTestCycle" class="reportCenterAction" method="toTestCycle">
+			<result name="success">/WEB-INF/jsp/report/TestCycle/report_toTestCycle.jsp</result>
+		</action>
+		<action name="report_generate_testcycle" class="reportCenterAction" method="report_generate_testcycle">
+			<result type="jasper" name="success">
+				<param name="location">/ReportTemplate/report5.jasper</param>
+				<param name="dataSource">releaseCycleList</param>
+				<param name="reportParameters">releaseCycleMap</param>
+				<param name="format">HTML</param>
+				<param name="imageServletUrl"><![CDATA[/image?image=]]></param>
+			</result>
+		</action>
+		<action name="report_generate_testcycle1" class="reportCenterAction" method="report_generate_testcycle">
+			<result name="success">/WEB-INF/jsp/report/TestCycle/report_generate_testcycle.jsp</result>
+		</action>
+		<action name="getReleaseCyList" class="reportCenterAction" method="getReleaseCyList"></action>
+	<!-- 	<action name="getPhaseList" class="reportCenterAction" method="getPhaseList"></action> -->
+		<action name="getListPlatforms" class="reportCenterAction" method="getListPlatforms"></action>
+		<action name="getListTargets" class="reportCenterAction" method="getListTargets"></action>
+		<action name="getListOSByProjectId" class="reportCenterAction" method="getListOSByProjectId"></action>
+		<action name="getListTestenvs" class="reportCenterAction" method="getListTestenvs"></action>
+		<action name="getListTestPlans" class="reportCenterAction" method="getListTestPlans"></action>
+		<action name="getListSubTestPlans" class="reportCenterAction" method="getListSubTestPlans"></action>
+		<action name="getListTestExecution" class="reportCenterAction" method="getListTestExecution"></action>
+		<action name="getPhaseByProjectIdJSON" class="reportCenterAction" method="getPhaseByProjectIdJSON"></action>
+		<action name="getBuildTypeByProjectIdJSON" class="reportCenterAction" method="getBuildTypeByProjectIdJSON"></action>
+		<action name="getTestTypeByProjectIdJSON" class="reportCenterAction" method="getTestTypeByProjectIdJSON"></action>
+		<action name="getTestPlanDurationJSON" class="reportCenterAction" method="getTestPlanDurationJSON"></action>
+		<action name="report_to_file" class="reportCenterAction" method="report_to_file">
+			<result name="success">/WEB-INF/jsp/report/Excel/report_to_file.jsp</result>
+		</action>
+	</package>
+</struts>

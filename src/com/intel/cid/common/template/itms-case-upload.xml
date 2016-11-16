@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestResults Project="STV_CLC" ReleaseCycle="STV_CLC_1.0.0_RC3_SKU4"
+	Execution="ex1" SubExecution="subex2" SubPlan="STV_CLC_perf" TAG="2014_07_11_09_32_34">
+	<TestUnit Name="STV_CLC_Func_64Bit_Kernel_Shumway62">
+		<TestCase ID="stv_clc_func_wireless_001" TestType="Func"
+			Name="wirelessPerformanceDpTest"
+			log="\\stv-server.sh.intel.com\STV_Logs\2013-08-12-16-30-03_Shumway62"
+			result="FAIL" executeDate="2014-08-12 10:16:45"/>
+		<TestCase ID="stv_clc_func_wireless_002" TestType="Func"
+			Name="wirelessPerformanceDpTest"
+			log="\\stv-server.sh.intel.com\STV_Logs\2013-08-12-16-30-03_Shumway62"
+			result="FAIL" executeDate="2014-08-12 10:16:45"/>
+	</TestUnit>
+	<TestUnit Name="STV_CLC_Perf_64Bit_Kernel_Shumway63">
+		<TestCase ID="stv_clc_perf_wireless_003" TestType="Perf"
+			Name="wirelessPerformanceDpTest"
+			log="\\stv-server.sh.intel.com\STV_Logs\2013-08-12-16-30-03_Shumway62"
+			result="PASS" executeDate="2014-08-12 10:16:45">
+			<Performance>
+				<item No="1" Cores="1S/1C/2T" FrameSize="84" RXPORTS="1" Mpps="12.019"
+					Linerate="99.998"></item>
+				<item No="2" Cores="1S/2C/1T" FrameSize="84" RXPORTS="1" Mpps="12.019"
+					Linerate="99.998"></item>
+				<item No="3" Cores="1S/4C/1T" FrameSize="84" RXPORTS="2" Mpps="24.038"
+					Linerate="99.998"></item>
+				<item No="4" Cores="1S/2C/2T" FrameSize="84" RXPORTS="2" Mpps="24.038"
+					Linerate="99.998"></item>
+				<item No="5" Cores="1S/3C/2T" FrameSize="84" RXPORTS="2" Mpps="24.038"
+					Linerate="99.998"></item>
+			</Performance>
+		</TestCase>
+		<TestCase ID="stv_clc_perf_wireless_004" TestType="Perf"
+			Name="wirelessPerformanceDpTest"
+			log="\\stv-server.sh.intel.com\STV_Logs\2013-08-12-16-30-03_Shumway62"
+			result="FAIL" executeDate="2014-08-12 10:16:45">
+			<Performance>
+				<item No="1" Cores="1S/1C/2T" FrameSize="84" RXPORTS="1" Mpps="12.019"
+					Linerate="99.998"></item>
+				<item No="2" Cores="1S/2C/1T" FrameSize="84" RXPORTS="1" Mpps="12.019"
+					Linerate="99.998"></item>
+				<item No="3" Cores="1S/4C/1T" FrameSize="84" RXPORTS="2" Mpps="24.038"
+					Linerate="99.998"></item>
+				<item No="4" Cores="1S/2C/2T" FrameSize="84" RXPORTS="2" Mpps="24.038"
+					Linerate="99.998"></item>
+				<item No="5" Cores="1S/3C/2T" FrameSize="84" RXPORTS="2" Mpps="24.038"
+					Linerate="99.998"></item>
+			</Performance>
+		</TestCase>
+		<TestCase ID="stv_clc_perf_wireless_001" TestType="Func"
+			Name="wirelessPerformanceDpTest"
+			log="\\stv-server.sh.intel.com\STV_Logs\2013-08-12-16-30-03_Shumway62"
+			result="BLOCK" executeDate="2014-08-12 10:16:45"/>
+	</TestUnit>
+</TestResults>
