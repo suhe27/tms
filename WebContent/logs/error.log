@@ -1,0 +1,63 @@
+2014:06:19 08:43:51 ERROR JobRunShell:211 - Job DEFAULT.planInvokingJobDetail threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'backupTestPlan' on target class [class com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd] failed; nested exception is java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:320)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:113)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:525)
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+
+	at com.intel.cid.common.service.DBBackupService.backupTestPlan(DBBackupService.java:109)
+	at com.intel.cid.common.service.DBBackupService$$FastClassByCGLIB$$a4847f8e.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.Cglib2AopProxy$CglibMethodInvocation.invokeJoinpoint(Cglib2AopProxy.java:689)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:622)
+	at com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd.backupTestPlan(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:273)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:311)
+	... 3 more
+2014:06:19 08:43:51 ERROR ErrorLogger:2185 - Job (DEFAULT.planInvokingJobDetail threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'backupTestPlan' on target class [class com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd] failed; nested exception is java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:525)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'backupTestPlan' on target class [class com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd] failed; nested exception is java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:320)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:113)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+
+	at com.intel.cid.common.service.DBBackupService.backupTestPlan(DBBackupService.java:109)
+	at com.intel.cid.common.service.DBBackupService$$FastClassByCGLIB$$a4847f8e.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.Cglib2AopProxy$CglibMethodInvocation.invokeJoinpoint(Cglib2AopProxy.java:689)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:622)
+	at com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd.backupTestPlan(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:273)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:311)
+	... 3 more

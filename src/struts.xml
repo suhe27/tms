@@ -1,0 +1,1408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+		"http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.custom.i18n.resources" value="ApplicationResources" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.multipart.maxSize" value="500000000" />
+
+	<!-- 开 发模式下使用，这样可以打印出更详细的错误信息 -->
+
+	<!-- 该 属性指定Struts 2中的action由Spring容器创 建 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="tmsInterceptor" class="com.intel.cid.common.interceptor.TMSInterceptor" />
+			
+			<interceptor name="parameterFilter"
+				class="com.opensymphony.xwork2.interceptor.ParameterFilterInterceptor" />
+			<interceptor-stack name="tmsInterceptorStack">
+				<interceptor-ref name="tmsInterceptor">
+					<param name="excludeMethods">logout</param>
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="parameterFilter" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="tmsInterceptorStack" />
+		<global-results>
+			<result name="error">/WEB-INF/jsp/error/error.jsp</result>
+			<result name="login">/WEB-INF/jsp/login/tologin.jsp</result>
+		</global-results>
+		<!-- index -->
+		<action name="index" class="boardAction" method="index">
+			<result name="success">/frameset/frame_main.jsp</result>
+		</action>
+
+		<!-- user start -->
+		<action name="frameUsers" class="userAction" method="frameUsers">
+
+			<result name="success">/WEB-INF/jsp/user/frameUsers.jsp</result>
+		</action>
+
+		<action name="toLogin" class="userAction" method="toLogin">
+			<result name="success">/WEB-INF/jsp/login/login.jsp</result>
+		</action>
+		<action name="login" class="userAction" method="login">
+			<result name="success">/WEB-INF/jsp/index/forward_index.jsp</result>
+			<result name="login">/WEB-INF/jsp/login/login.jsp</result>
+		</action>
+		<action name="toRegister" class="userAction" method="toRegister">
+			<result name="success">/WEB-INF/jsp/login/register.jsp</result>
+		</action>
+		<action name="register" class="userAction" method="register">
+			<result name="success" type="redirectAction">listUsers</result>
+			<result name="error">/WEB-INF/jsp/login/register.jsp</result>
+		</action>
+		<action name="listUsers" class="userAction" method="listUsers">
+			<param name="itemSize">30</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/user/listUsers.jsp</result>
+		</action>
+
+		<action name="delUser" class="userAction" method="delUser">
+			<result name="success" type="redirectAction">listUsers</result>
+		</action>
+		<action name="logout" class="userAction" method="logout">
+			<result name="success">/WEB-INF/jsp/login/login.jsp</result>
+		</action>
+		<action name="toUpdateUser" class="userAction" method="toUpdateUser">
+			<result name="success">/WEB-INF/jsp/user/detatilUser.jsp
+			</result>
+		</action>
+		<action name="toLoginUser" class="userAction" method="toLoginUser">
+			<result name="success">/WEB-INF/jsp/user/toLoginUser.jsp</result>
+		</action>
+		<action name="updateUser" class="userAction" method="updateUser">
+			<result name="success">/WEB-INF/jsp/user/updateUserSuccess.jsp</result>
+		</action>
+		<action name="updateUserNameAndPassword" class="userAction" method="updateUserNameAndPassword">
+			<result name="success" type="chain">toLoginUser</result>
+		</action>
+		<action name="toAddUser" class="userAction" method="toAddUser">
+			<result name="success">/WEB-INF/jsp/user/addUser.jsp</result>
+		</action>
+		<action name="addUser" class="userAction" method="addUser">
+			<result name="success">/WEB-INF/jsp/user/addUserSuccess.jsp</result>
+		</action>
+		<!-- user end -->
+
+
+
+		<!-- ixia start -->
+
+		<action name="formIxia" class="boardAction" method="formBoard">
+			<result name="success">/WEB-INF/jsp/ixia/formIxias.jsp</result>
+
+		</action>
+		<action name="fuzzyQueryBoards" class="boardAction" method="fuzzyQueryBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/ixia/listIxias.jsp</result>
+
+		</action>
+
+		<action name="listIxias" class="boardAction" method="listBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/ixia/listIxias.jsp</result>
+
+		</action>
+
+		<action name="toAllocateIxias" class="boardAction" method="toAllocateBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/ixia/allocateIxias_form.jsp</result>
+
+		</action>
+		<action name="allocateIxiasList" class="boardAction" method="fuzzyQueryBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/ixia/allocateIxias_list.jsp</result>
+
+		</action>
+		<action name="toReleaseIxias" class="boardAction" method="toAllocateBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/ixia/releaseIxias_form.jsp</result>
+
+		</action>
+
+		<action name="releaseIxias_list" class="boardAction" method="fuzzyQueryBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/ixia/releaseIxias_list.jsp</result>
+
+		</action>
+
+		<action name="allocateIxias" class="boardAction" method="allocateBoards">
+			<result name="success">/WEB-INF/jsp/ixia/allocateIxiasSuccessful.jsp
+			</result>
+
+		</action>
+		<action name="cancelIxias" class="boardAction" method="cancelBoards">
+			<result name="success">/WEB-INF/jsp/ixia/releaseIxiasSuccessful.jsp
+			</result>
+
+
+		</action>
+
+		<action name="delIxia" class="boardAction" method="delBoard">
+			<result name="success" type="chain">fuzzyQueryBoards</result>
+
+		</action>
+
+		<action name="toUpdateIxia" class="boardAction" method="toUpdateBoard">
+			<result name="success">/WEB-INF/jsp/ixia/detailIxia.jsp</result>
+		</action>
+		<action name="showIxia" class="boardAction" method="toUpdateBoard">
+			<result name="success">/WEB-INF/jsp/ixia/showIxia.jsp</result>
+		</action>
+		<action name="updateIxia" class="boardAction" method="updateBoard">
+			<result name="success">/WEB-INF/jsp/ixia/updateIxiaSuccess.jsp</result>
+
+		</action>
+		<action name="toAddIxia" class="boardAction" method="toAddBoard">
+			<result name="success">/WEB-INF/jsp/ixia/addIxia.jsp</result>
+		</action>
+		<action name="addIxia" class="boardAction" method="addBoard">
+			<result name="success">/WEB-INF/jsp/ixia/addIxiaSuccess.jsp</result>
+
+		</action>
+		<!-- ixia end -->
+
+		<!-- board start -->
+		<action name="formBoard" class="boardAction" method="formBoard">
+			<result name="success">/WEB-INF/jsp/board/formBoards.jsp</result>
+
+		</action>
+		<action name="listBoards" class="boardAction" method="listBoards">
+			<param name="itemSize">30</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/board/listBoards.jsp</result>
+
+		</action>
+
+		<action name="toAllocateBoards" class="boardAction" method="toAllocateBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/board/allocateBoards_form.jsp
+			</result>
+
+		</action>
+		<action name="allocateBoardsList" class="boardAction" method="toAllocateBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/board/allocateBoards_list.jsp
+			</result>
+
+		</action>
+		<action name="toReleaseBoards" class="boardAction" method="toAllocateBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/board/releaseBoards_form.jsp
+			</result>
+
+		</action>
+
+		<action name="releaseBoards_list" class="boardAction" method="toAllocateBoards">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/board/releaseBoards_list.jsp
+			</result>
+
+		</action>
+
+		<action name="allocateBoards" class="boardAction" method="allocateBoards">
+			<result name="success">/WEB-INF/jsp/board/allocateBoardsSuccessful.jsp
+			</result>
+
+		</action>
+		<action name="cancelBoards" class="boardAction" method="cancelBoards">
+			<result name="success">/WEB-INF/jsp/board/releaseBoardsSuccessful.jsp
+			</result>
+
+
+		</action>
+
+		<action name="delBoard" class="boardAction" method="delBoard">
+			<result name="success" type="chain">listBoards</result>
+
+		</action>
+
+		<action name="toUpdateBoard" class="boardAction" method="toUpdateBoard">
+			<result name="success">/WEB-INF/jsp/board/detailBoard.jsp</result>
+		</action>
+		<action name="showBoard" class="boardAction" method="toUpdateBoard">
+			<result name="success">/WEB-INF/jsp/board/showBoard.jsp</result>
+		</action>
+		<action name="updateBoard" class="boardAction" method="updateBoard">
+			<result name="success">/WEB-INF/jsp/board/updateBoardSuccess.jsp
+			</result>
+
+		</action>
+		<action name="toAddBoard" class="boardAction" method="toAddBoard">
+			<result name="success">/WEB-INF/jsp/board/addBoard.jsp</result>
+		</action>
+		<action name="addBoard" class="boardAction" method="addBoard">
+			<result name="success">/WEB-INF/jsp/board/addBoardSuccess.jsp</result>
+
+		</action>
+		<!-- board end -->
+
+		<!-- os start -->
+
+		<action name="listOSs" class="oSAction" method="listOSs">
+			<result name="success">/WEB-INF/jsp/os/listOSs.jsp</result>
+		</action>
+
+		<action name="delOS" class="oSAction" method="delOS">
+			<result name="success" type="chain">listOSs</result>
+		</action>
+
+		<action name="toUpdateOS" class="oSAction" method="toUpdateOS">
+			<result name="success">/WEB-INF/jsp/os/detailOS.jsp</result>
+		</action>
+		<action name="updateOS" class="oSAction" method="updateOS">
+			<result name="success">/WEB-INF/jsp/os/updateOsSuccess.jsp</result>
+		</action>
+		<action name="toAddOS" class="oSAction" method="toAddOS">
+			<result name="success">/WEB-INF/jsp/os/addOS.jsp</result>
+		</action>
+		<action name="addOS" class="oSAction" method="addOS">
+			<result name="success">/WEB-INF/jsp/os/addOsSuccess.jsp</result>
+		</action>
+
+		<!-- os end -->
+		
+		
+		
+		<!-- ExecutionOSso start -->
+
+		<action name="listExecutionOSs" class="executionOSAction" method="listExecutionOSs">
+			<result name="success">/WEB-INF/jsp/executionos/listExecutionOs.jsp</result>
+		</action>
+
+		<action name="delExecutionOS" class="executionOSAction" method="delExecutionOS">
+			<result name="success" type="chain">listExecutionOSs</result>
+		</action>
+
+		<action name="toUpdateExecutionOS" class="executionOSAction" method="toUpdateExecutionOS">
+			<result name="success">/WEB-INF/jsp/executionos/detailExecutionOS.jsp</result>
+		</action>
+		<action name="updateExecutionOS" class="executionOSAction" method="updateExecutionOS">
+			<result name="success">/WEB-INF/jsp/executionos/updateExecutionOsSuccess.jsp</result>
+		</action>
+		<action name="toAddExecutionOS" class="executionOSAction" method="toAddExecutionOS">
+			<result name="success">/WEB-INF/jsp/executionos/addExecutionOS.jsp</result>
+		</action>
+		<action name="addExecutionOS" class="executionOSAction" method="addExecutionOS">
+			<result name="success">/WEB-INF/jsp/executionos/addExecutionOsSuccess.jsp</result>
+		</action>
+
+		<!-- ExecutionOSso end -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- build build -->
+
+		<action name="listBuild" class="buildAction" method="listbuilds">
+			<result name="success">/WEB-INF/jsp/build/listbuild.jsp</result>
+		</action>
+
+		<action name="delBuild" class="buildAction" method="delBuild">
+			<result name="success" type="chain">listBuild</result>
+		</action>
+
+		<action name="toupdateBuild" class="buildAction" method="toupdateBuild">
+			<result name="success">/WEB-INF/jsp/build/detailbuild.jsp</result>
+		</action>
+		<action name="updateBuild" class="buildAction" method="updateBuild">
+			<result name="success">/WEB-INF/jsp/build/updatebuilduccess.jsp</result>
+		</action>
+		<action name="toBuildAdd" class="buildAction" method="toBuildAdd">
+			<result name="success">/WEB-INF/jsp/build/addbuild.jsp</result>
+		</action>
+		<action name="addBuild" class="buildAction" method="addBuild">
+			<result name="success">/WEB-INF/jsp/build/addbuilduccess.jsp</result>
+		</action>
+		
+
+		<!-- os build -->
+		
+		<!-- phase start -->
+
+		<action name="listPhases" class="phaseAction" method="listPhases">
+			<result name="success">/WEB-INF/jsp/phase/listPhases.jsp</result>
+		</action>
+
+		<action name="delPhase" class="phaseAction" method="delPhase">
+			<result name="success" type="chain">listPhases</result>
+		</action>
+
+		<action name="toUpdatePhase" class="phaseAction" method="toUpdatePhase">
+			<result name="success">/WEB-INF/jsp/phase/detailPhase.jsp</result>
+		</action>
+		<action name="updatePhase" class="phaseAction" method="updatePhase">
+			<result name="success">/WEB-INF/jsp/phase/updatePhaseSuccess.jsp</result>
+		</action>
+		<action name="toAddPhase" class="phaseAction" method="toAddPhase">
+			<result name="success">/WEB-INF/jsp/phase/addPhase.jsp</result>
+		</action>
+		<action name="addPhase" class="phaseAction" method="addPhase">
+			<result name="success">/WEB-INF/jsp/phase/addPhaseSuccess.jsp</result>
+		</action>
+
+		<!-- phase end -->
+		
+		
+		
+		
+		<!-- Executionphase start -->
+
+		<action name="listExecutionPhases" class="executionPhaseAction" method="listExecutionPhases">
+			<result name="success">/WEB-INF/jsp/Executionphase/listExecutionPhases.jsp</result>
+		</action>
+
+		<action name="delExecutionPhase" class="executionPhaseAction" method="delExecutionPhase">
+			<result name="success" type="chain">listExecutionPhases</result>
+		</action>
+
+		<action name="toUpdateExecutionPhase" class="executionPhaseAction" method="toUpdateExecutionPhase">
+			<result name="success">/WEB-INF/jsp/Executionphase/detailExecutionPhase.jsp</result>
+		</action>
+		<action name="updateExecutionPhase" class="executionPhaseAction" method="updateExecutionPhase">
+			<result name="success">/WEB-INF/jsp/Executionphase/updateExecutionPhaseSuccess.jsp</result>
+		</action>
+		<action name="toAddExecutionPhase" class="executionPhaseAction" method="toAddExecutionPhase">
+			<result name="success">/WEB-INF/jsp/Executionphase/addExecutionPhase.jsp</result>
+		</action>
+		<action name="addExecutionPhase" class="executionPhaseAction" method="addExecutionPhase">
+			<result name="success">/WEB-INF/jsp/Executionphase/addExecutionPhaseSuccess.jsp</result>
+		</action>
+
+		<!-- Executionphase end -->
+		
+		
+		
+		
+		<!-- starget start -->
+
+		<action name="listTarget" class="targetAction" method="listTarget">
+			<result name="success">/WEB-INF/jsp/target/listTargets.jsp</result>
+		</action>
+
+		<action name="delTarget" class="targetAction" method="delTargetById">
+			<result name="success" type="chain">listTarget</result>
+		</action>
+
+		<action name="toUpdateTarget" class="targetAction" method="toUpdateTargetId">
+			<result name="success">/WEB-INF/jsp/target/detailTarget.jsp</result>
+		</action>
+		<action name="updateTarget" class="targetAction" method="updateTargetId">
+			<result name="success">/WEB-INF/jsp/target/updateTargetSuccess.jsp
+			</result>
+		</action>
+		<action name="toAddTarget" class="targetAction" method="toAddTarget">
+			<result name="success">/WEB-INF/jsp/target/addTarget.jsp</result>
+		</action>
+		<action name="addTarget" class="targetAction" method="addTarget">
+			<result name="success">/WEB-INF/jsp/target/addTargetSuccess.jsp</result>
+		</action>
+
+		<!-- Target end -->
+		<!-- testenv start -->
+
+		<action name="listTestenvs" class="testEnvAction" method="listTestenvs">
+			<result name="success">/WEB-INF/jsp/testenv/listTestenv.jsp</result>
+		</action>
+
+		<action name="delTestenv" class="testEnvAction" method="delTestenv">
+			<result name="success" type="chain">listTestenvs</result>
+		</action>
+
+		<action name="toUpdateTestenv" class="testEnvAction" method="toUpdateTestenv">
+			<result name="success">/WEB-INF/jsp/testenv/detailTestenv.jsp</result>
+		</action>
+		<action name="updateTestenv" class="testEnvAction" method="updateTestenv">
+			<result name="success">/WEB-INF/jsp/testenv/updateTestenvSuccess.jsp</result>
+		</action>
+		<action name="toAddTestenv" class="testEnvAction" method="toAddTestenv">
+			<result name="success">/WEB-INF/jsp/testenv/addTestenv.jsp</result>
+		</action>
+		<action name="addTestenv" class="testEnvAction" method="addTestenv">
+			<result name="success">/WEB-INF/jsp/testenv/addTestenvSuccess.jsp</result>
+		</action>
+
+		<!-- testenv end -->
+
+		<!-- testtype start -->
+
+		<action name="listTestTypes" class="testTypeAction" method="listTestTypes">
+			<result name="success">/WEB-INF/jsp/testtype/listTestTypes.jsp</result>
+		</action>
+
+		<action name="delTestType" class="testTypeAction" method="delTestType">
+			<result name="success" type="chain">listTestTypes</result>
+		</action>
+
+		<action name="toUpdateTestType" class="testTypeAction" method="toUpdateTestType">
+			<result name="success">/WEB-INF/jsp/testtype/detailTestType.jsp</result>
+		</action>
+		<action name="updateTestType" class="testTypeAction" method="updateTestType">
+			<result name="success">/WEB-INF/jsp/testtype/updateTestTypeSuccess.jsp
+			</result>
+		</action>
+		<action name="toAddTestType" class="testTypeAction" method="toAddTestType">
+			<result name="success">/WEB-INF/jsp/testtype/addTestType.jsp</result>
+		</action>
+		<action name="addTestType" class="testTypeAction" method="addTestType">
+			<result name="success">/WEB-INF/jsp/testtype/addTestTypeSuccess.jsp
+			</result>
+		</action>
+
+
+		<!-- testtype end -->
+
+
+
+
+		<!-- boardstate start -->
+
+		<action name="listBoardStates" class="boardStateAction" method="listBoardStates">
+			<result name="success">/WEB-INF/jsp/boardstate/listBoardStates.jsp
+			</result>
+		</action>
+
+		<action name="delBoardState" class="boardStateAction" method="delBoardState">
+			<result name="success" type="chain">listBoardStates</result>
+		</action>
+
+		<action name="toUpdateBoardState" class="boardStateAction"
+			method="toUpdateBoardState">
+			<result name="success">/WEB-INF/jsp/boardstate/detailBoardState.jsp
+			</result>
+		</action>
+		<action name="updateBoardState" class="boardStateAction"
+			method="updateBoardState">
+			<result name="success">/WEB-INF/jsp/boardstate/updateBoardStateSuccess.jsp
+			</result>
+		</action>
+		<action name="toAddBoardState" class="boardStateAction" method="toAddBoardState">
+			<result name="success">/WEB-INF/jsp/boardstate/addBoardState.jsp
+			</result>
+		</action>
+		<action name="addBoardState" class="boardStateAction" method="addBoardState">
+			<result name="success">/WEB-INF/jsp/boardstate/addBoardStateSuccess.jsp
+			</result>
+		</action>
+
+
+		<!-- boardstate end -->
+
+		<!-- component start -->
+		<action name="listComponents" class="componentAction" method="listComponents">
+			<result name="success">/WEB-INF/jsp/component/listComponents.jsp
+			</result>
+		</action>
+
+		<action name="delComponent" class="componentAction" method="delComponent">
+			<result name="success" type="chain">listComponents</result>
+		</action>
+
+		<action name="toUpdateComponent" class="componentAction"
+			method="toUpdateComponent">
+			<result name="success">/WEB-INF/jsp/component/detailComponent.jsp
+			</result>
+		</action>
+		<action name="updateComponent" class="componentAction" method="updateComponent">
+			<result name="success">/WEB-INF/jsp/component/updateComponentSuccess.jsp
+			</result>
+		</action>
+		<action name="toAddComponent" class="componentAction" method="toAddComponent">
+			<result name="success">/WEB-INF/jsp/component/addComponent.jsp</result>
+		</action>
+		<action name="addComponent" class="componentAction" method="addComponent">
+			<result name="success">/WEB-INF/jsp/component/addComponentSuccess.jsp
+			</result>
+		</action>
+
+		<!-- component end -->
+
+		<!-- subcomponent start -->
+		<action name="listSubComponents" class="subComponentAction"
+			method="listSubComponents">
+			<result name="success">/WEB-INF/jsp/subComponent/listSubComponents.jsp
+			</result>
+		</action>
+
+		<action name="delSubComponent" class="subComponentAction"
+			method="delSubComponent">
+			<result name="success" type="chain">listSubComponents</result>
+		</action>
+
+		<action name="toUpdateSubComponent" class="subComponentAction"
+			method="toUpdateSubComponent">
+			<result name="success">/WEB-INF/jsp/subComponent/detailSubComponent.jsp
+			</result>
+		</action>
+		<action name="updateSubComponent" class="subComponentAction"
+			method="updateSubComponent">
+			<result name="success">/WEB-INF/jsp/subComponent/updateSubComponentSuccess.jsp
+			</result>
+		</action>
+		<action name="toAddSubComponent" class="subComponentAction"
+			method="toAddSubComponent">
+			<result name="success">/WEB-INF/jsp/subComponent/addSubComponent.jsp
+			</result>
+		</action>
+		<action name="addSubComponent" class="subComponentAction"
+			method="addSubComponent">
+			<result name="success">/WEB-INF/jsp/subComponent/addSubComponentSuccess.jsp
+			</result>
+		</action>
+
+		<!-- subcomponent end -->
+
+
+		<!-- feature start -->
+		<action name="listFeatures" class="featureAction" method="listFeatures">
+			<result name="success">/WEB-INF/jsp/feature/listFeatures.jsp
+			</result>
+		</action>
+
+		<action name="delFeature" class="featureAction" method="delFeature">
+			<result name="success" type="chain">listFeatures</result>
+		</action>
+
+		<action name="toUpdateFeature" class="featureAction" method="toUpdateFeature">
+			<result name="success">/WEB-INF/jsp/feature/detailFeature.jsp
+			</result>
+		</action>
+		<action name="updateFeature" class="featureAction" method="updateFeature">
+			<result name="success">/WEB-INF/jsp/feature/updateFeatureSuccess.jsp
+			</result>
+		</action>
+		<action name="toAddFeature" class="featureAction" method="toAddFeature">
+			<result name="success">/WEB-INF/jsp/feature/addFeature.jsp
+			</result>
+		</action>
+		<action name="addFeature" class="featureAction" method="addFeature">
+			<result name="success">/WEB-INF/jsp/feature/addFeatureSuccess.jsp
+			</result>
+		</action>
+
+		<!-- subcomponent end -->
+		<!-- team start -->
+
+		<action name="listTeams" class="teamAction" method="listTeams">
+			<result name="success">/WEB-INF/jsp/team/listTeams.jsp</result>
+		</action>
+		<action name="tranformTestCase" class="teamAction" method="tranformTestCase">
+			<result name="success">/WEB-INF/jsp/team/listTeams.jsp</result>
+		</action>
+		<action name="delTeam" class="teamAction" method="delTeam">
+			<result name="success" type="chain">listTeams</result>
+		</action>
+
+		<action name="toUpdateTeam" class="teamAction" method="toUpdateTeam">
+			<result name="success">/WEB-INF/jsp/team/detailTeam.jsp
+			</result>
+		</action>
+		<action name="updateTeam" class="teamAction" method="updateTeam">
+			<result name="success">/WEB-INF/jsp/team/updateTeamSuccess.jsp</result>
+		</action>
+		<action name="toAddTeam" class="teamAction" method="toAddTeam">
+			<result name="success">/WEB-INF/jsp/team/addTeam.jsp</result>
+		</action>
+		<action name="addTeam" class="teamAction" method="addTeam">
+			<result name="success">/WEB-INF/jsp/team/addTeamSuccess.jsp</result>
+		</action>
+		<!-- team end -->
+
+		<!--platform start -->
+		<action name="listPlatforms" class="platformAction" method="listPlatforms">
+			<result name="success">/WEB-INF/jsp/platform/listPlatforms.jsp</result>
+		</action>
+
+		<action name="delPlatform" class="platformAction" method="delPlatform">
+			<result name="success" type="chain">listPlatforms</result>
+		</action>
+
+		<action name="toUpdatePlatform" class="platformAction" method="toUpdatePlatform">
+			<result name="success">/WEB-INF/jsp/platform/detailPlatform.jsp
+			</result>
+		</action>
+		<action name="updatePlatform" class="platformAction" method="updatePlatform">
+			<result name="success">/WEB-INF/jsp/platform/updatePlatformSuccess.jsp
+			</result>
+		</action>
+		<action name="toAddPlatform" class="platformAction" method="toAddPlatform">
+			<result name="success">/WEB-INF/jsp/platform/addPlatform.jsp</result>
+		</action>
+		<action name="addPlatform" class="platformAction" method="addPlatform">
+			<result name="success">/WEB-INF/jsp/platform/addPlatformSuccess.jsp
+			</result>
+		</action>
+		<!-- platform end -->
+
+		<!-- testcase start -->
+
+		<action name="caseAnalyze" class="testCaseAction" method="caseAnalyze">
+			<result name="success">/WEB-INF/jsp/testcase/caseAnalyze.jsp</result>
+		</action>
+
+		<action name="frameTestCases" class="testCaseAction" method="frameTestCases">
+			<result name="success">/WEB-INF/jsp/testcase/frameTestCases.jsp</result>
+		</action>
+
+		<action name="reSet" class="testCaseAction" method="reSet">
+			<result name="success">/WEB-INF/jsp/testcase/frameTestCases.jsp</result>
+		</action>
+
+		<action name="listTestCases" class="testCaseAction" method="listTestCases">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testcase/listTestCases.jsp</result>
+		</action>
+
+		<action name="delTestCase" class="testCaseAction" method="delBatchTestCases">
+			<result name="success">/WEB-INF/jsp/testcase/deteleTestCaseSuccessful.jsp
+			</result>
+		</action>
+
+		<action name="toUpdateTestCase" class="testCaseAction" method="toUpdateTestCase">
+			<result name="success">/WEB-INF/jsp/testcase/detailTestCase.jsp</result>
+		</action>
+		<action name="updateTestCase" class="testCaseAction" method="updateTestCase">
+			<result name="success">/WEB-INF/jsp/testcase/updateTestCaseSuccessful.jsp
+			</result>
+		</action>
+		<action name="showTestCase" class="testCaseAction" method="toUpdateTestCase">
+			<result name="success">/WEB-INF/jsp/testcase/showTestCase.jsp</result>
+		</action>
+		<action name="toAddTestCase" class="testCaseAction" method="toAddTestCase">
+			<result name="success">/WEB-INF/jsp/testcase/addTestCase.jsp</result>
+		</action>
+		<action name="addTestCase" class="testCaseAction" method="addTestCase">
+			<result name="success">/WEB-INF/jsp/testcase/addTestCaseSuccessful.jsp
+			</result>
+		</action>
+
+		<action name="preAddTestCaseToSuite" class="testSuiteAction" method="preAddTestCaseToSuite">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testsuite/addTestCaseToSuite.jsp
+			</result>
+		</action>
+				
+		<action name="toAddTestSuite" class="testSuiteAction" method="toAddTestSuite">
+			<result name="success">/WEB-INF/jsp/testsuite/addTestSuite.jsp
+			</result>
+		</action>
+		<action name="addTestSuite" class="testSuiteAction" method="addTestSuite">
+			<result name="success">/WEB-INF/jsp/FormSuccessful.jsp
+			</result>
+		</action>
+		<action name="addCaseToSuiteBySession" class="testSuiteAction" method="addCaseToSuiteBySession"></action>
+		<action name="resetAddCaseToSuiteSession" class="testSuiteAction" method="resetAddCaseToSuiteSession"></action>
+		<action name="addTestCaseToSuite" class="testSuiteAction"
+			method="addTestCaseToSuite">
+			<result name="success">/WEB-INF/jsp/testsuite/addTestCaseToSuiteSuccessful.jsp
+			</result>
+		</action>
+		<action name="selectTestCases" class="testCaseAction" method="selecctTestCases">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testsuite/addTestCaseToSuite.jsp
+			</result>
+		</action>
+
+		<action name="getPlatformList" class="testCaseAction" method="getPlatformList"></action>
+		<action name="getFeatureList" class="testCaseAction" method="getFeatureList"></action>
+		<action name="getComponentList" class="testCaseAction" method="getComponentList"></action>
+		<action name="getFeatureListAsID" class="testCaseAction"
+			method="getFeatureListAsID"></action>
+		<action name="getSubComponentList" class="testCaseAction"
+			method="getSubComponentList"></action>
+
+		<!-- testcase end -->
+
+		<!-- testsuite start -->
+		<action name="frameTestSuites" class="testSuiteAction" method="frameTestSuites">
+			<result name="success">/WEB-INF/jsp/testsuite/frameTestSuites.jsp
+			</result>
+		</action>
+		<action name="listTestSuites" class="testSuiteAction" method="listTestSuites">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testsuite/listTestSuites.jsp
+			</result>
+		</action>
+		<action name="delTestSuite" class="testSuiteAction" method="delTestSuite">
+			<result name="success">/WEB-INF/jsp/FormSuccessfulWithOutCloseWindow.jsp</result>
+		</action>
+
+		<action name="toDetailTestSuite" class="testSuiteAction"
+			method="toDetailTestSuite">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testsuite/detailTestSuite.jsp
+			</result>
+		</action>
+		
+		<action name="toDetailTestUnit" class="testSuiteAction"
+			method="toDetailTestSuite">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testresult/detailTestUnit.jsp
+			</result>
+		</action>
+		<action name="toUpdateTestSuite" class="testSuiteAction"
+			method="toUpdateTestSuite">
+			<result name="success">/WEB-INF/jsp/testsuite/updateTestSuite.jsp
+			</result>
+		</action>
+   		<action name="copyTestSuite" class="testSuiteAction" method="copyTestSuite">
+    		<result type="redirectAction">
+        		<param name="actionName">toUpdateTestSuite</param>
+        		<param name="testSuiteId">${testSuiteId}</param>   
+    		</result>
+		</action>
+		<action name="updateTestSuite" class="testSuiteAction" method="updateTestSuite">
+			<result name="success">/WEB-INF/jsp/testsuite/updateTestSuiteSuccessful.jsp
+			</result>
+		</action>
+
+		<action name="delTestCaseInTestSuite" class="testSuiteAction"
+			method="delTestCasesInSuite">
+			<result name="success">/WEB-INF/jsp/testsuite/deleteTestSuiteSuccessful.jsp
+			</result>
+		</action>
+
+		<action name="exportTestCase" class="testSuiteAction" method="exportTestCase">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}"</param>
+
+			</result>
+		</action>
+		<action name="downloadCaseTemplate" class="testCaseAction" method="downloadCaseTemplate">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="Import_TestCase_Template.xlsx"</param>
+
+			</result>
+		</action>
+		<action name="exportSearchedCase" class="testSuiteAction" method="exportSearchedCase">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xlsx"</param>
+
+			</result>
+		</action>
+		<!-- testsuite end -->
+
+		<!-- fileuplaod start -->
+		<action name="importTestCase" class="fileUploadAction" method="importTestCase">
+			<param name="savePath">/upload</param>
+			<param name="allowTypes">.xlsx</param>
+			<result name="success">/WEB-INF/jsp/fileupload/uploadTestCase.jsp
+			</result>
+			<result name="input">/WEB-INF/jsp/fileupload/uploadTestCase.jsp
+			</result>
+		</action>
+
+		<action name="toImportTestCase" class="fileUploadAction"
+			method="toImportTestCase">
+
+			<result name="success">/WEB-INF/jsp/fileupload/uploadTestCase.jsp
+			</result>
+		</action>
+		<action name="toImportTestResult" class="fileUploadAction"
+			method="toImportTestResult">
+			<result name="success">/WEB-INF/jsp/fileupload/uploadTestResult.jsp
+			</result>
+		</action>
+		<action name="listPerformanceResult" class="testExecutionAction" method="listPerformanceResult">
+			<result name="success">/WEB-INF/jsp/testexecution/performanceResult.jsp</result>
+		</action>
+		<action name="listPerformanceResultBySubExecutionId" class="testExecutionAction" method="listPerformanceResultBySubExecutionId">
+			<result name="success">/WEB-INF/jsp/testexecution/performanceResultOfSubExecution.jsp</result>
+		</action>
+		<action name="toImportTestResultByXML" class="fileUploadAction"
+			method="toImportTestResultByXML">
+			<result name="success">/WEB-INF/jsp/fileupload/uploadTestResultByXML.jsp
+			</result>
+		</action>
+		<action name="toImportPerformanceResultByExcel" class="fileUploadAction" method="toImportPerformanceResultByExcel">
+			<result name="success">/WEB-INF/jsp/fileupload/importPerformanceResultByExcel.jsp
+			</result>
+		</action>
+		<action name="importPerformanceResultByExcel" class="fileUploadAction" method="importPerformanceResultByExcel">
+			<param name="savePath">/upload</param>
+			<param name="allowTypes">.xlsx</param>
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp</result>
+			<result name="input">/WEB-INF/jsp/fileupload/importPerformanceResultByExcel.jsp</result>
+		</action>
+		<action name="importTestResult" class="fileUploadAction" method="importTestResult">
+			<param name="savePath">/upload</param>
+			<param name="allowTypes">.xlsx</param>
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp
+			</result>
+			<result name="input">/WEB-INF/jsp/fileupload/uploadTestResult.jsp
+			</result>
+		</action>
+		<action name="importTestResultByXML" class="fileUploadAction" method="importTestResultByXML">
+			<param name="savePath">/upload</param>
+			<param name="allowTypes">.xml</param>
+			<result name="success">/WEB-INF/jsp/testexecution/updateSingleTestResultSuccess.jsp
+			</result>
+			<result name="input">/WEB-INF/jsp/fileupload/uploadTestResultByXML.jsp
+			</result>
+		</action>
+		<action name="interfaceImportTestResultByXML" class="fileUploadAction" method="interfaceImportTestResultByXML">
+			<param name="savePath">/upload</param>
+			<param name="allowTypes">.xml</param>
+			<interceptor-ref name="defaultStack">
+     			<param name="excludeMethods">interfaceImportTestResultByXML</param>
+     		</interceptor-ref>
+			<result name="success">/WEB-INF/jsp/fileupload/interfaceUploadTestResultByXML.jsp
+			</result>
+			<result name="input">/WEB-INF/jsp/fileupload/interfaceUploadTestResultByXML.jsp
+			</result>
+		</action>
+		<action name="interfaceExportSubExecutionToXML" class="testExecutionAction" method="interfaceExportSubExecutionToXML">
+			<interceptor-ref name="defaultStack">
+     			<param name="excludeMethods">interfaceExportSubExecutionToXML</param>
+     		</interceptor-ref>
+			<result name="success" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xml"</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="interfaceExportSelectedCaseToXML" class="testExecutionAction" method="interfaceExportSelectedCaseToXML">
+			<interceptor-ref name="defaultStack">
+     			<param name="excludeMethods">interfaceExportSelectedCaseToXML</param>
+     		</interceptor-ref>
+			<result name="success" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xml"</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<!-- fileupload end -->
+
+		<!-- exec comment start -->
+		<action name="addExecComment" class="execCommentAction" method="addExecComment">
+		</action>
+		<action name="updateExecComment" class="execCommentAction"
+			method="updateExecComment">
+		</action>
+		<!-- exec comment end -->
+		<!-- test plan start -->
+
+		<action name="listTestPlans" class="testPlanAction" method="listTestPlans">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+
+			<result name="success">/WEB-INF/jsp/testplan/listTestPlan_iframe.jsp
+			</result>
+		</action>
+
+		<action name="exportTestPlans" class="testPlanAction" method="exportTestPlans">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xlsx"</param>
+
+			</result>
+		</action>
+		<action name="listTestPlan_iframe" class="testPlanAction"
+			method="listTestPlan_iframe">
+			<result name="success">/WEB-INF/jsp/testplan/frameTestPlan.jsp
+			</result>
+		</action>
+		<action name="toUpdateTestPlan" class="testPlanAction" method="toUpdateTestPlan">
+			<result name="success">/WEB-INF/jsp/testplan/updateTestPlan.jsp
+			</result>
+		</action>
+		<action name="toDetailTestPlan" class="testPlanAction" method="toDetailTestPlan">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testplan/detailTestPlan.jsp
+			</result>
+		</action>
+		
+		<action name="updateTestPlan" class="testPlanAction" method="updateTestPlan">
+			<result name="success">/WEB-INF/jsp/testplan/updateTestPlanSuccess.jsp
+			</result>
+		</action>
+
+		<action name="toAddTestPlan" class="testPlanAction" method="toAddTestPlan">
+			<result name="success">/WEB-INF/jsp/testplan/addTestPlan.jsp
+			</result>
+		</action>
+		<action name="toCopyTestPlan" class="testPlanAction" method="toCopyTestPlan">
+			<result name="success">/WEB-INF/jsp/testplan/copyTestPlan.jsp
+			</result>
+		</action>
+		<!-- 
+		<action name="copyTestPlan" class="testPlanAction" method="copyTestPlan">
+			<result name="success">/WEB-INF/jsp/testplan/copyTestPlanSuccessful.jsp
+			</result>
+		</action>
+		-->
+   		<action name="copyTestPlan" class="testPlanAction" method="copyTestPlan">
+    		<result type="redirectAction">
+        		<param name="actionName">toUpdateTestPlan</param>
+        		<param name="testPlanId">${testPlanId}</param>   
+    		</result>
+		</action>
+		<action name="addTestPlan" class="testPlanAction" method="addTestPlan">
+			<result name="success">/WEB-INF/jsp/testplan/addTestPlanSuccessful.jsp
+			</result>
+		</action>
+		<action name="delTestPlan" class="testPlanAction" method="delTestPlan">
+			<result name="success">/WEB-INF/jsp/testplan/deleteTestPlanSuccessful.jsp
+			</result>
+		</action>
+		<action name="delSubPlan" class="testPlanAction" method="delSubTestPlansInOneTestPlan">
+			<result name="success">/WEB-INF/jsp/subplan/deleteSubTestPlanSuccess.jsp
+			</result>
+
+		</action>		
+			<action name="getPhaseList" class="testPlanAction" method="getPhaseList"></action>
+		<!-- test plan end -->
+
+
+		<!-- sub test plan start -->
+		
+		<action name="toDetailSubTestPlan" class="subTestPlanAction"
+			method="toDetailSubTestPlan">
+			<result name="success">/WEB-INF/jsp/subplan/detailSubTestPlan.jsp</result>
+			<result name="sbuplanDetial">/WEB-INF/jsp/testexecution/sbuplanDetail.jsp</result>			
+		</action>
+
+		<action name="ListResultBySubplanId" class="subTestPlanAction"
+			method="ListResultBySubplanId">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/subplan/detailsubplanTestcase.jsp
+			</result>
+		</action>
+ 
+		<action name="delTestUnits" class="subTestPlanAction" method="delTestUnits">
+			<result name="success">/WEB-INF/jsp/subplan/deleteTestUnitSuccess.jsp
+			</result>
+		</action>
+		<action name="toUpdateSubTestPlan" class="subTestPlanAction"
+			method="toUpdateSubTestPlan">
+			<result name="success">/WEB-INF/jsp/subplan/updateSubTestPlan.jsp
+			</result>
+		</action>
+
+		<action name="updateSubTestPlan" class="subTestPlanAction"
+			method="updateSubTestPlan">
+			<result name="success">/WEB-INF/jsp/subplan/updateSubTestPlanSuccess.jsp
+			</result>
+		</action>
+
+		<action name="toAddSubTestPlan" class="subTestPlanAction"
+			method="toAddSubTestPlan">
+			<result name="success">/WEB-INF/jsp/subplan/addSubTestPlan.jsp</result>
+		</action>
+
+
+		<action name="addSubTestPlan" class="subTestPlanAction" method="addSubTestPlan">
+			<result name="success">/WEB-INF/jsp/subplan/addSubTestPlanSuccess.jsp
+			</result>
+		</action>
+		<action name="toAddTestUnit" class="subTestPlanAction" method="toAddTestUnit">
+			<result name="success">/WEB-INF/jsp/subplan/addTestUnit.jsp</result>
+
+		</action>
+
+
+		<action name="toUploadSubTestPlan" class="subTestPlanAction"
+			method="toUploadSubTestPlan">
+			<result name="success">/WEB-INF/jsp/subplan/upLoadSubTestPlan.jsp
+			</result>
+			
+
+		</action>
+
+		<action name="uploadSubTestPlan" class="subTestPlanAction"
+			method="uploadSubTestPlan">
+			<param name="savePath">/upload</param>
+			<param name="allowTypes">.xml</param>
+			<result name="success">/WEB-INF/jsp/subplan/upLoadSubTestPlan.jsp
+			</result>
+			<result name="input">/WEB-INF/jsp/subplan/upLoadSubTestPlan.jsp
+			</result>
+		</action>
+
+		<action name="addTestUnit" class="subTestPlanAction" method="addTestUnit">
+			<result name="success">/WEB-INF/jsp/subplan/addTestUnitSuccess.jsp
+			</result>
+
+		</action>
+
+		<action name="toExportSubTestPlanToXml" class="subTestPlanAction"
+			method="toExportSubTestPlanToXml">
+			<result name="success">/WEB-INF/jsp/subplan/exportSubTestPlan.jsp
+			</result>
+		</action>
+		<action name="toExportFailedSubTestPlanToXml" class="subTestPlanAction"
+			method="toExportFailedSubTestPlanToXml">
+			<result name="success">/WEB-INF/jsp/subplan/exportFailedSubTestPlan.jsp
+			</result>
+		</action>
+		<action name="toRunMediaConfiguration" class="subTestPlanAction"
+			method="toRunMediaConfiguration">
+			<result name="success">/WEB-INF/jsp/subplan/configMediaExecution.jsp
+			</result>
+		</action>
+		<action name="runMediaConfiguration" class="subTestPlanAction"
+			method="runMediaConfiguration">
+			<result name="success">/WEB-INF/jsp/error/success.jsp</result>
+		</action>
+
+		<action name="exportSubTestPlanToXml" class="subTestPlanAction"
+			method="exportSubTestPlanToXml">
+			<result name="success" type="stream">
+
+				<param name="contentType">application/xml</param>
+
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xml"</param>
+
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="exportFailedSubTestPlanToXml" class="subTestPlanAction"
+			method="exportFailedSubTestPlanToXml">
+			<result name="success" type="stream">
+
+				<param name="contentType">application/xml</param>
+
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xml"</param>
+
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+
+		<action name="httpExportSubTestPlanToXml" class="subTestPlanAction"
+			method="httpExportSubTestPlanToXml">
+			<result name="success" type="stream">
+
+				<param name="contentType">application/xml</param>
+
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xml"</param>
+
+				<param name="inputName">inputStream</param>
+			</result>
+			<result name="none"></result>
+		</action>
+
+		<!-- sub test plan end -->
+
+		<!-- test project start -->
+		<action name="listProject" class="projectAction" method="queryProject">
+			<result name="success">/WEB-INF/jsp/project/listProject.jsp</result>
+		</action>
+		<action name="delProjectById" class="projectAction" method="delProjectById">
+			<result name="success" type="chain">listProject</result>
+		</action>
+		<action name="toAddProjectform" class="projectAction" method="toAddProjectform">
+			<result name="success">/WEB-INF/jsp/project/toAddProjectForm.jsp
+			</result>
+		</action>
+		<action name="addPorject" class="projectAction" method="addPorject">
+			<result name="success">/WEB-INF/jsp/project/addProjectSuccess.jsp
+			</result>
+		</action>
+		<action name="detailProject" class="projectAction" method="detailProject">
+			<result name="success">/WEB-INF/jsp/project/detailProjectForm.jsp
+			</result>
+		</action>
+		<action name="updateProjectForm" class="projectAction" method="updateProjectForm">
+			<result name="success">/WEB-INF/jsp/project/UpdateProjectSuccess.jsp
+			</result>
+		</action>
+
+		<!-- test project end -->
+		
+		
+		<!-- test Cycie start -->
+		<action name="queryCycie" class="cycieAction" method="queryCycie">
+			<result name="success">/WEB-INF/jsp/cycie/listCycie.jsp</result>
+		</action>
+		<action name="delCycieById" class="cycieAction" method="delCycieById">
+			<result name="success" type="chain">queryCycie</result>
+		</action>
+		<action name="detailCycie" class="cycieAction" method="detailCycie">
+			<result name="success">/WEB-INF/jsp/cycie/toAddCycieForm.jsp
+			</result>
+		</action>
+		<action name="toAddCycie" class="cycieAction" method="toAddCycie">
+			<result name="success">/WEB-INF/jsp/cycie/toAddCycieForm.jsp
+			</result>
+		</action>
+		
+		<action name="addCycie" class="cycieAction" method="addCycie">
+			<result name="success">/WEB-INF/jsp/cycie/addCycietSuccess.jsp
+			</result>
+		</action>
+		<action name="detailCycie" class="cycieAction" method="detailCycie">
+			<result name="success">/WEB-INF/jsp/cycie/detailCycietForm.jsp
+			</result>
+		</action>
+		<action name="updateCycie" class="cycieAction" method="updateCycie">
+			<result name="success">/WEB-INF/jsp/cycie/UpdateCycieSuccess.jsp
+			</result>
+		</action>
+
+		<!-- test Cycle end -->
+		
+
+
+		<!-- test Unit start -->
+		<action name="toUpdateTestUnitRs" class="testUnitAction"
+			method="toUpdateTestUnitRs">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testresult/detailTestResult.jsp
+			</result>
+		</action>
+
+		<action name="showTestResult" class="testUnitAction" method="toUpdateTestUnitRs">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testresult/showTestResult.jsp
+			</result>
+		</action>
+
+		<action name="toUpdateTestUnit" class="testUnitAction" method="toUpdateTestUnit">
+			<result name="success">/WEB-INF/jsp/testresult/updateTestUnit.jsp
+			</result>
+		</action>
+
+		<action name="updateTestUnit" class="testUnitAction" method="updateTestUnit">
+			<result name="success">/WEB-INF/jsp/testresult/updateTestUnitSuccess.jsp
+			</result>
+		</action>
+
+		<action name="updateBatchTestResult" class="testUnitAction"
+			method="updateBatchTestResult">
+			<result name="success">/WEB-INF/jsp/testresult/updateTestResultSuccessful.jsp
+			</result>
+		</action>
+		<!-- test Unit end -->
+		<!-- test Unit start -->
+		
+		<!-- test execution start -->
+		<action name="listTexeExecutioniframe" class="testExecutionAction" method="listTexeExecutioniframe">
+			<result name="success">/WEB-INF/jsp/testexecution/frameTestExecution.jsp
+			</result>
+		</action>
+		<action name="toAddTestExecution" class="testExecutionAction"
+			method="toAddTestExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/addTestExecution.jsp
+			</result>
+		</action>
+		<action name="assignTask" class="testExecutionAction" method="assignTask">
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp
+			</result>
+		</action>	
+		<action name="toAddSubExecution" class="testExecutionAction"
+			method="toAddSubExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/addSubExecution.jsp
+			</result>
+		</action>
+		
+		<action name="addTestExecution" class="testExecutionAction"
+			method="addTestExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/addTestenvSuccessful.jsp
+			</result>
+		</action>
+		<action name="addSubExecution" class="testExecutionAction"
+			method="addSubExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp
+			</result>
+		</action>
+   		<action name="copyTestExecution" class="testExecutionAction" method="copyTestExecution">
+    		<result type="redirectAction">
+        		<param name="actionName">toUpdateExecution</param>
+        		<param name="executionId">${executionId}</param>   
+    		</result>
+		</action>		
+		<action name="toUpdateExecution" class="testExecutionAction"
+			method="toUpdateExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/toUpdateTestExecution.jsp
+			</result>
+		</action>
+		<action name="toUpdateSubExecution" class="testExecutionAction"
+			method="toUpdateSubExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/toUpdateSubExecution.jsp
+			</result>
+		</action>
+		<action name="toRunSubExecution" class="testExecutionAction" method="toRunSubExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/runSubExecution.jsp
+			</result>
+		</action>
+		<action name="runSubExecution" class="testExecutionAction" method="runSubExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp
+			</result>
+			<result name="input">/WEB-INF/jsp/fileupload/runSubExecution.jsp
+			</result>
+		</action>
+		<action name="toRunSelectedCase" class="testExecutionAction" method="toRunSelectedCase">
+			<result name="success">/WEB-INF/jsp/testexecution/runSelectedCase.jsp
+			</result>
+		</action>
+		<action name="runSelectedCase" class="testExecutionAction" method="runSelectedCase">
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp
+			</result>
+			<result name="input">/WEB-INF/jsp/fileupload/runSubExecution.jsp
+			</result>
+		</action>
+		<action name="toUpdateSingleTestResult" class="testExecutionAction"
+			method="toUpdateSingleTestResult">
+			<result name="success">/WEB-INF/jsp/testexecution/toUpdateSingleTestResult.jsp
+			</result>
+		</action>
+		<action name="testCaseExecutionHistory" class="testExecutionAction"
+			method="testCaseExecutionHistory">
+			<result name="success">/WEB-INF/jsp/testexecution/testCaseExecutionHistory.jsp
+			</result>
+		</action>
+		<action name="updateSingleTestResult" class="testExecutionAction"
+			method="updateSingleTestResult">
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp
+			</result>
+		</action>
+		<action name="topSelectedResult" class="testExecutionAction" method="topSelectedResult">
+			<result name="success">/WEB-INF/jsp/testexecution/updateSingleTestResultSuccess.jsp</result>
+		</action>
+		<action name="exportSubExecutionToExcel" class="testExecutionAction" method="exportSubExecutionToExcel">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}"</param>
+			</result>
+		</action>
+		<action name="exportPerformanceResultToExcel" class="testExecutionAction" method="exportPerformanceResultToExcel">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xlsx"</param>
+			</result>
+		</action>
+		<action name="exportTestExecutionToExcel" class="testExecutionAction" method="exportTestExecutionToExcel">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xlsx"</param>
+			</result>
+		</action>
+		<action name="exportSubExecutionToXML" class="testExecutionAction" method="exportSubExecutionToXML">
+			<result name="success" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xml"</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="exportSelectedCaseToXML" class="testExecutionAction" method="exportSelectedCaseToXML">
+			<result name="success" type="stream">
+				<param name="contentType">application/xml</param>
+				<param name="contentDisposition">attachment;filename="${exportFileName}.xml"</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		<action name="updateTestexecution" class="testExecutionAction"
+			method="updateTestexecution">
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp
+			</result>
+		</action>
+		<action name="updateSubExecution" class="testExecutionAction"
+			method="updateSubExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/updateTestExecutionSuccess.jsp
+			</result>
+		</action>
+		<action name="deleTestExecution" class="testExecutionAction"
+			method="deleTestExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/deleteTestExecitopmSuccessful.jsp</result>
+		</action>
+		<action name="delSubExecution" class="testExecutionAction"
+			method="delSubExecution">
+			<result name="success">/WEB-INF/jsp/testexecution/deleteTestExecitopmSuccessful.jsp</result>
+		</action>
+		<action name="toSubplanDetail" class="testPlanAction" method="toDetailTestPlan">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testexecution/detailTestExecution.jsp
+			</result>
+		</action>
+	
+		<action name="toDetailTestExecution" class="testExecutionAction" method="toDetailTestExecution">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testexecution/detailTestExecution.jsp
+			</result>
+		</action>
+	
+		<action name="toDetailSubExecution" class="testExecutionAction" method="toDetailSubExecution">
+			<param name="itemSize">50</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testexecution/detailSubExecution.jsp
+			</result>
+		</action>
+
+		<action name="toEditCaseListOfSubExecution" class="testExecutionAction" method="toEditCaseListOfSubExecution">
+			<param name="itemSize">50</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testexecution/editCaseListOfDetailSubExecution.jsp
+			</result>
+		</action>
+		
+		<action name="editCaseListOfSubExecution" class="testExecutionAction" method="editCaseListOfSubExecution">
+			<interceptor-ref name="defaultStack">
+     			<param name="excludeMethods">interfaceExportSubExecutionToXML</param>
+     		</interceptor-ref>
+			<result name="success" type="chain">toDetailSubExecution</result>
+		</action>		
+		
+		<action name="listTestTextExecution" class="testExecutionAction"
+			method="listTestTextExecution">
+			<param name="itemSize">25</param>
+			<param name="linkSize">8</param>
+			<result name="success">/WEB-INF/jsp/testexecution/listTestExecution_iframe.jsp
+			</result>
+		</action>
+
+
+		<!-- test Unit end -->
+
+
+
+	</package>
+	<include file="com/intel/cid/common/action/reportCenter.xml" />
+</struts>

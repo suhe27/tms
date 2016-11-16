@@ -1,0 +1,142 @@
+2014:06:18 17:00:04 INFO XmlConfigurationProvider:31 - Parsing configuration file [struts-default.xml]
+2014:06:18 17:00:04 INFO XmlConfigurationProvider:31 - Parsing configuration file [struts-plugin.xml]
+2014:06:18 17:00:04 ERROR DomHelper:27 - The content of element type "package" must match "(result-types?,interceptors?,default-interceptor-ref?,default-action-ref?,default-class-ref?,global-results?,global-exception-mappings?,action*)". at (null:972:12)
+org.xml.sax.SAXParseException: The content of element type "package" must match "(result-types?,interceptors?,default-interceptor-ref?,default-action-ref?,default-class-ref?,global-results?,global-exception-mappings?,action*)".
+	at org.apache.xerces.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at org.apache.xerces.util.ErrorHandlerWrapper.error(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.XMLErrorReporter.reportError(Unknown Source)
+	at org.apache.xerces.impl.dtd.XMLDTDValidator.handleEndElement(Unknown Source)
+	at org.apache.xerces.impl.dtd.XMLDTDValidator.endElement(Unknown Source)
+	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanEndElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
+	at com.opensymphony.xwork2.util.DomHelper.parse(DomHelper.java:113)
+	at com.opensymphony.xwork2.config.providers.XmlConfigurationProvider.loadConfigurationFiles(XmlConfigurationProvider.java:885)
+	at com.opensymphony.xwork2.config.providers.XmlConfigurationProvider.loadDocuments(XmlConfigurationProvider.java:144)
+	at com.opensymphony.xwork2.config.providers.XmlConfigurationProvider.init(XmlConfigurationProvider.java:111)
+	at com.opensymphony.xwork2.config.impl.DefaultConfiguration.reloadContainer(DefaultConfiguration.java:164)
+	at com.opensymphony.xwork2.config.ConfigurationManager.getConfiguration(ConfigurationManager.java:55)
+	at org.apache.struts2.dispatcher.Dispatcher.init_PreloadConfiguration(Dispatcher.java:360)
+	at org.apache.struts2.dispatcher.Dispatcher.init(Dispatcher.java:403)
+	at org.apache.struts2.dispatcher.ng.InitOperations.initDispatcher(InitOperations.java:69)
+	at org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.init(StrutsPrepareAndExecuteFilter.java:48)
+	at org.apache.catalina.core.ApplicationFilterConfig.getFilter(ApplicationFilterConfig.java:298)
+	at org.apache.catalina.core.ApplicationFilterConfig.<init>(ApplicationFilterConfig.java:119)
+	at org.apache.catalina.core.StandardContext.filterStart(StandardContext.java:4076)
+	at org.apache.catalina.core.StandardContext.start(StandardContext.java:4730)
+	at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1057)
+	at org.apache.catalina.core.StandardHost.start(StandardHost.java:822)
+	at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1057)
+	at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:463)
+	at org.apache.catalina.core.StandardService.start(StandardService.java:525)
+	at org.apache.catalina.core.StandardServer.start(StandardServer.java:754)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:595)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:289)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)
+2014:06:18 17:00:04 INFO ResponseOverrideFilter:108 - Filter initialized. Response buffering is enabled
+2014:06:18 17:26:48 INFO XmlConfigurationProvider:31 - Parsing configuration file [struts-default.xml]
+2014:06:18 17:26:49 INFO XmlConfigurationProvider:31 - Parsing configuration file [struts-plugin.xml]
+2014:06:18 17:26:49 INFO XmlConfigurationProvider:31 - Parsing configuration file [struts.xml]
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (spring) for class com.opensymphony.xwork2.ObjectFactory
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for class com.opensymphony.xwork2.conversion.impl.XWorkConverter
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.TextProvider
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.ActionProxyFactory
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.conversion.ObjectTypeDeterminer
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface org.apache.struts2.dispatcher.mapper.ActionMapper
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (jakarta) for interface org.apache.struts2.dispatcher.multipart.MultiPartRequest
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for class org.apache.struts2.views.freemarker.FreemarkerManager
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for class org.apache.struts2.views.velocity.VelocityManager
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface org.apache.struts2.components.UrlRenderer
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.validator.ActionValidatorManager
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.util.ValueStackFactory
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.util.reflection.ReflectionProvider
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.util.reflection.ReflectionContextFactory
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.util.PatternMatcher
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface org.apache.struts2.dispatcher.StaticContentLoader
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.UnknownHandlerManager
+2014:06:18 17:26:49 INFO BeanSelectionProvider:31 - Loading global messages from ApplicationResources
+2014:06:18 17:26:49 INFO StrutsSpringObjectFactory:31 - Initializing Struts-Spring integration...
+2014:06:18 17:26:49 INFO SpringObjectFactory:31 - Setting autowire strategy to name
+2014:06:18 17:26:49 INFO StrutsSpringObjectFactory:31 - ... initialized Struts-Spring integration successfully
+2014:06:18 17:26:50 INFO TMSInterceptor:25 - TMSInterceptor initing
+2014:06:18 17:26:50 INFO TMSInterceptor:25 - TMSInterceptor initing
+2014:06:18 17:26:50 INFO TMSInterceptor:25 - TMSInterceptor initing
+2014:06:18 17:26:51 INFO ResponseOverrideFilter:108 - Filter initialized. Response buffering is enabled
+2014:06:18 17:43:16 INFO UserDaoImpl:414 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:18 17:43:16 INFO UserDaoImpl:423 - result:com.intel.cid.common.bean.User@12e4e8c
+2014:06:18 17:43:19 INFO UserDaoImpl:414 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:18 17:43:19 INFO UserDaoImpl:423 - result:com.intel.cid.common.bean.User@91e143
+2014:06:18 17:43:19 INFO UserDaoImpl:431 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:18 17:43:19 INFO UserDaoImpl:440 - result:com.intel.cid.common.bean.User@d5f9b9
+2014:06:18 17:43:19 INFO TeamDaoImpl:116 - sql:select * from team where exists( select * from user_team as map where map.teamid = team.teamid and map.userid=83)
+2014:06:18 17:43:22 INFO TestPlanDaoImpl:201 - queryTestPlanSize method sql:SELECT count(*) FROM testplan map where  map.owner='83'   and projectId = '-1' and releaseCycle = '-1'
+2014:06:18 17:43:22 INFO TestPlanDaoImpl:203 - queryTestPlanSize method result:0
+2014:06:18 17:43:22 INFO TestPlanDaoImpl:177 - queryTestPlanByPage method sql:select * from testplan t where  projectid in( SELECT a.projectid FROM project a, user_team b where a.teamid=b.teamid and b.userid='83')   and projectId = '-1' and releaseCycle = '-1' ORDER BY STARTDATE DESC limit 0,25
+2014:06:18 17:43:23 INFO ExportViewFactory:61 - Initializing ExportViewFactory with type={excel}
+2014:06:18 17:43:23 INFO TableProperties:536 - No LocaleResolver configured.
+2014:06:18 17:43:23 INFO TableProperties:1196 - I18nResourceProvider initialized to org.displaytag.localization.I18nJstlAdapter.
+2014:06:18 17:43:28 INFO OSDaoImpl:40 - sql: select * from testenv
+2014:06:18 17:43:28 INFO OSDaoImpl:53 - result:[]
+2014:06:18 17:43:36 INFO TargetDaoImpl:31 - sql:insert into target(targetname) values(?)
+2014:06:18 17:43:36 INFO TargetDaoImpl:40 - result:1
+2014:06:18 17:43:38 INFO OSDaoImpl:40 - sql: select * from testenv
+2014:06:18 17:43:38 INFO OSDaoImpl:53 - result:[]
+2014:06:18 17:44:01 INFO TargetDaoImpl:31 - sql:insert into target(targetname) values(?)
+2014:06:18 17:44:01 INFO TargetDaoImpl:40 - result:1
+2014:06:18 17:44:02 INFO OSDaoImpl:40 - sql: select * from testenv
+2014:06:18 17:44:02 INFO OSDaoImpl:53 - result:[]
+2014:06:18 17:44:45 INFO OSDaoImpl:144 - sql: select  project.* ,team.*  from project left join team on project.teamid = team.teamid
+2014:06:18 17:44:45 INFO OSDaoImpl:159 - result:[com.intel.cid.common.bean.Project@5f00f9, com.intel.cid.common.bean.Project@138ef1d, com.intel.cid.common.bean.Project@da6d09, com.intel.cid.common.bean.Project@2c6f70, com.intel.cid.common.bean.Project@1482747]
+2014:06:18 17:44:46 INFO FeatureDaoImpl:286 - queryAllFeatures method sql:select * from feature
+2014:06:18 17:44:46 INFO FeatureDaoImpl:301 - queryAllFeatures method result:[com.intel.cid.common.bean.Feature@19f1a8a, com.intel.cid.common.bean.Feature@875dee, com.intel.cid.common.bean.Feature@127e4be, com.intel.cid.common.bean.Feature@1a7aa4, com.intel.cid.common.bean.Feature@69b25f, com.intel.cid.common.bean.Feature@13d9c02, com.intel.cid.common.bean.Feature@1cd761a, com.intel.cid.common.bean.Feature@4ba66, com.intel.cid.common.bean.Feature@69b7fe, com.intel.cid.common.bean.Feature@aea8cf, com.intel.cid.common.bean.Feature@ccd249, com.intel.cid.common.bean.Feature@101f287, com.intel.cid.common.bean.Feature@d9973a, com.intel.cid.common.bean.Feature@1578426]
+2014:06:18 17:59:01 INFO XmlConfigurationProvider:31 - Parsing configuration file [struts-default.xml]
+2014:06:18 17:59:01 INFO XmlConfigurationProvider:31 - Parsing configuration file [struts-plugin.xml]
+2014:06:18 17:59:01 INFO XmlConfigurationProvider:31 - Parsing configuration file [struts.xml]
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (spring) for class com.opensymphony.xwork2.ObjectFactory
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for class com.opensymphony.xwork2.conversion.impl.XWorkConverter
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.TextProvider
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.ActionProxyFactory
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.conversion.ObjectTypeDeterminer
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface org.apache.struts2.dispatcher.mapper.ActionMapper
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (jakarta) for interface org.apache.struts2.dispatcher.multipart.MultiPartRequest
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for class org.apache.struts2.views.freemarker.FreemarkerManager
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for class org.apache.struts2.views.velocity.VelocityManager
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface org.apache.struts2.components.UrlRenderer
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.validator.ActionValidatorManager
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.util.ValueStackFactory
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.util.reflection.ReflectionProvider
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.util.reflection.ReflectionContextFactory
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.util.PatternMatcher
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface org.apache.struts2.dispatcher.StaticContentLoader
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Choosing bean (struts) for interface com.opensymphony.xwork2.UnknownHandlerManager
+2014:06:18 17:59:01 INFO BeanSelectionProvider:31 - Loading global messages from ApplicationResources
+2014:06:18 17:59:02 INFO StrutsSpringObjectFactory:31 - Initializing Struts-Spring integration...
+2014:06:18 17:59:02 INFO SpringObjectFactory:31 - Setting autowire strategy to name
+2014:06:18 17:59:02 INFO StrutsSpringObjectFactory:31 - ... initialized Struts-Spring integration successfully
+2014:06:18 17:59:03 INFO TMSInterceptor:25 - TMSInterceptor initing
+2014:06:18 17:59:03 INFO TMSInterceptor:25 - TMSInterceptor initing
+2014:06:18 17:59:03 INFO TMSInterceptor:25 - TMSInterceptor initing
+2014:06:18 17:59:03 INFO ResponseOverrideFilter:108 - Filter initialized. Response buffering is enabled
+2014:06:18 17:59:15 INFO UserDaoImpl:414 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:18 17:59:15 INFO UserDaoImpl:423 - result:com.intel.cid.common.bean.User@16d46d7
+2014:06:18 17:59:17 INFO UserDaoImpl:414 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:18 17:59:17 INFO UserDaoImpl:423 - result:com.intel.cid.common.bean.User@199ea3c
+2014:06:18 17:59:17 INFO UserDaoImpl:431 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:18 17:59:18 INFO UserDaoImpl:440 - result:com.intel.cid.common.bean.User@84fdbc
+2014:06:18 17:59:18 INFO TeamDaoImpl:116 - sql:select * from team where exists( select * from user_team as map where map.teamid = team.teamid and map.userid=83)
+2014:06:18 17:59:20 INFO OSDaoImpl:40 - sql: select * from testenv
+2014:06:18 17:59:20 INFO OSDaoImpl:53 - result:[]
+2014:06:18 17:59:24 INFO ExportViewFactory:61 - Initializing ExportViewFactory with type={excel}
+2014:06:18 17:59:24 INFO TableProperties:536 - No LocaleResolver configured.

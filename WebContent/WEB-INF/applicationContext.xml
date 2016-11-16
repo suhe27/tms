@@ -1,0 +1,1349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="locations" value="/WEB-INF/jdbc.properties" /> </bean> <context:property-placeholder 
+		location="classpath:/jdbc.properties" /> -->
+	<bean id="userDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://10.4.229.246:3306/tms?useUnicode=true&amp;characterEncoding=utf8" 
+			/>
+
+		<property name="username" value="root" />
+		<property name="password" value="tms" />
+		<!-- ?????????? -->
+		<property name="initialSize" value="1" />
+		<!-- ??????? -->
+		<property name="maxActive" value="500" />
+		<!-- ?????.??????????,???????????????????????,?????maxIdle?? -->
+		<property name="maxIdle" value="2" />
+		<!-- ?????.????????????,?????????????,??????????? -->
+		<property name="minIdle" value="1" />
+	</bean>
+
+
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		depends-on="userDataSource">
+		<property name="dataSource">
+			<ref local="userDataSource" />
+		</property>
+	</bean>
+
+	<!-- dao impl class initiation -->
+
+	<bean id="boardDaoImpl" class="com.intel.cid.common.dao.impl.BoardDaoImpl"
+		depends-on="jdbcTemplate" scope="prototype">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+
+	</bean>
+	<bean id="boardStateDaoImpl" class="com.intel.cid.common.dao.impl.BoardStateDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+
+	</bean>
+
+	<bean id="caseMapDaoImpl" class="com.intel.cid.common.dao.impl.CaseMapDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="caseSuiteMapImpl" class="com.intel.cid.common.dao.impl.CaseSuiteMapImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="componentDaoImpl" class="com.intel.cid.common.dao.impl.ComponentDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="subComponentDaoImpl" class="com.intel.cid.common.dao.impl.SubComponentDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="featureDaoImpl" class="com.intel.cid.common.dao.impl.FeatureDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="oSDaoImpl" class="com.intel.cid.common.dao.impl.OSDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+
+	<bean id="executionOSDaoImpl" class="com.intel.cid.common.dao.impl.ExecutionOSDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+
+
+
+
+	<bean id="buildDaoImpl" class="com.intel.cid.common.dao.impl.BuildDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+
+	<bean id="phaseDaoImpl" class="com.intel.cid.common.dao.impl.PhaseDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+
+	<bean id="executionPhaseDaoImpl" class="com.intel.cid.common.dao.impl.ExecutionPhaseDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+
+	<bean id="targetDaoImpl" class="com.intel.cid.common.dao.impl.TargetDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="testEnvDaoImpl" class="com.intel.cid.common.dao.impl.TestEnvDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="projectDaoImpl" class="com.intel.cid.common.dao.impl.ProjectDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+
+	</bean>
+
+
+
+	<bean id="planMapDaoImpl" class="com.intel.cid.common.dao.impl.PlanMapDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="testUnitDaoImpl" class="com.intel.cid.common.dao.impl.TestUnitDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="platformDaoImpl" class="com.intel.cid.common.dao.impl.PlatformDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="subTestPlanDaoImpl" class="com.intel.cid.common.dao.impl.SubTestPlanDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="teamDaoImpl" class="com.intel.cid.common.dao.impl.TeamDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="testCaseDaoImpl" class="com.intel.cid.common.dao.impl.TestCaseDaoImpl"
+		depends-on="jdbcTemplate" lazy-init="false">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="testPlanDaoImpl" class="com.intel.cid.common.dao.impl.TestPlanDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+
+	<bean id="testPlanTrackDaoImpl" class="com.intel.cid.common.dao.impl.TestPlanTrackDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="testResultDaoImpl" class="com.intel.cid.common.dao.impl.TestResultDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="testSuiteDaoImpl" class="com.intel.cid.common.dao.impl.TestSuiteDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="testTypeDaoImpl" class="com.intel.cid.common.dao.impl.TestTypeDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="userDaoImpl" class="com.intel.cid.common.dao.impl.UserDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<bean id="mediaParametersDaoImpl" class="com.intel.cid.common.dao.impl.MediaParametersDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+
+
+	<bean id="testExecutionDaoImpl" class="com.intel.cid.common.dao.impl.TestExecutionDaoImpl"
+		depends-on="jdbcTemplate">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+
+	<!-- Report Center Start -->
+	<bean id="reportDaoImp" class="com.intel.cid.common.dao.impl.ReportDaoImp"
+		depends-on="jdbcTemplate">
+		<property name="db">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+	</bean>
+	<!-- Report Center End -->
+
+	<!-- dao impl class initiation -->
+
+	<!-- service class initiation -->
+
+	<bean id="boardService" class="com.intel.cid.common.service.BoardService"
+		depends-on="boardDaoImpl">
+		<property name="boardDaoImpl">
+			<ref local="boardDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<bean id="boardStateService" class="com.intel.cid.common.service.BoardStateService"
+		depends-on="boardStateDaoImpl">
+		<property name="boardStateDaoImpl">
+			<ref local="boardStateDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<bean id="subComponentService" class="com.intel.cid.common.service.SubComponentService"
+		depends-on="subComponentDaoImpl">
+		<property name="subComponentDaoImpl">
+			<ref local="subComponentDaoImpl"></ref>
+		</property>
+	</bean>
+	<bean id="componentService" class="com.intel.cid.common.service.ComponentService"
+		depends-on="componentDaoImpl">
+		<property name="componentDaoImpl">
+			<ref local="componentDaoImpl"></ref>
+		</property>
+		<property name="subComponentDaoImpl">
+			<ref local="subComponentDaoImpl"></ref>
+		</property>
+	</bean>
+
+
+
+	<bean id="featureService" class="com.intel.cid.common.service.FeatureService"
+		depends-on="featureDaoImpl">
+		<property name="featureDaoImpl">
+			<ref local="featureDaoImpl"></ref>
+		</property>
+		<property name="componentDaoImpl">
+			<ref local="componentDaoImpl"></ref>
+		</property>
+
+
+	</bean>
+
+	<bean id="oSService" class="com.intel.cid.common.service.OSService"
+		depends-on="oSDaoImpl">
+		<property name="oSDaoImpl">
+			<ref local="oSDaoImpl"></ref>
+		</property>
+
+	</bean>
+
+	<bean id="executionOSService" class="com.intel.cid.common.service.ExecutionOSService"
+		depends-on="executionOSDaoImpl">
+		<property name="executionOSDaoImpl">
+			<ref local="executionOSDaoImpl"></ref>
+		</property>
+
+	</bean>
+
+
+
+
+	<bean id="buildService" class="com.intel.cid.common.service.BuildService"
+		depends-on="buildDaoImpl">
+		<property name="buildDaoImpl">
+			<ref local="buildDaoImpl"></ref>
+		</property>
+
+	</bean>
+
+	<bean id="phaseService" class="com.intel.cid.common.service.PhaseService"
+		depends-on="phaseDaoImpl">
+		<property name="phaseDaoImpl">
+			<ref local="phaseDaoImpl"></ref>
+		</property>
+
+	</bean>
+
+	<bean id="executionPhaseService" class="com.intel.cid.common.service.ExecutionPhaseService"
+		depends-on="executionPhaseDaoImpl">
+		<property name="executionPhaseDaoImpl">
+			<ref local="executionPhaseDaoImpl"></ref>
+		</property>
+
+	</bean>
+
+	<bean id="targetService" class="com.intel.cid.common.service.TargetService"
+		depends-on="targetDaoImpl">
+		<property name="targetDaoImpl">
+			<ref local="targetDaoImpl"></ref>
+		</property>
+
+	</bean>
+
+	<bean id="platformService" class="com.intel.cid.common.service.PlatformService"
+		depends-on="platformDaoImpl">
+		<property name="platformDaoImpl">
+			<ref local="platformDaoImpl"></ref>
+		</property>
+	</bean>
+	<bean id="testEnvService" class="com.intel.cid.common.service.TestEnvService"
+		depends-on="testEnvDaoImpl">
+		<property name="testEnvDaoImpl">
+			<ref local="testEnvDaoImpl"></ref>
+		</property>
+
+	</bean>
+	<bean id="projectSerivce" class="com.intel.cid.common.service.ProjectSerivce"
+		depends-on="projectDaoImpl">
+		<property name="projectDaoImpl">
+			<ref local="projectDaoImpl"></ref>
+		</property>
+
+	</bean>
+
+
+
+	<bean id="subTestPlanService" class="com.intel.cid.common.service.SubTestPlanService"
+		depends-on="subTestPlanDaoImpl">
+		<property name="planMapDaoImpl">
+			<ref local="planMapDaoImpl"></ref>
+		</property>
+		<property name="subTestPlanDaoImpl">
+			<ref local="subTestPlanDaoImpl"></ref>
+		</property>
+		<property name="testUnitDaoImpl">
+			<ref local="testUnitDaoImpl"></ref>
+		</property>
+		<property name="testResultDaoImpl">
+			<ref local="testResultDaoImpl"></ref>
+		</property>
+
+		<property name="testPlanDaoImpl">
+			<ref local="testPlanDaoImpl"></ref>
+		</property>
+		<property name="testPlanTrackDaoImpl">
+			<ref local="testPlanTrackDaoImpl"></ref>
+		</property>
+		<property name="userDaoImpl">
+			<ref local="userDaoImpl"></ref>
+		</property>
+		<property name="caseSuiteMapImpl">
+			<ref local="caseSuiteMapImpl"></ref>
+		</property>
+		<property name="testExecutionDaoImpl">
+			<ref local="testExecutionDaoImpl"></ref>
+		</property>
+	</bean>
+	<bean id="teamService" class="com.intel.cid.common.service.TeamService"
+		depends-on="teamDaoImpl">
+		<property name="teamDaoImpl">
+			<ref local="teamDaoImpl"></ref>
+		</property>
+	</bean>
+	<bean id="testCaseService" class="com.intel.cid.common.service.TestCaseService"
+		depends-on="testCaseDaoImpl" scope="prototype">
+		<property name="testCaseDaoImpl">
+			<ref local="testCaseDaoImpl" />
+		</property>
+		<property name="caseSuiteMapImpl">
+			<ref local="caseSuiteMapImpl"></ref>
+		</property>
+
+		<property name="testSuiteDaoImpl">
+			<ref local="testSuiteDaoImpl"></ref>
+		</property>
+	</bean>
+
+
+	<bean id="testPlanService" class="com.intel.cid.common.service.TestPlanService"
+		depends-on="testPlanDaoImpl">
+		<property name="testPlanDaoImpl">
+			<ref local="testPlanDaoImpl"></ref>
+		</property>
+		<property name="planMapDaoImpl">
+			<ref local="planMapDaoImpl"></ref>
+		</property>
+		<property name="subTestPlanDaoImpl">
+			<ref local="subTestPlanDaoImpl"></ref>
+		</property>
+		<property name="testUnitDaoImpl">
+			<ref local="testUnitDaoImpl"></ref>
+		</property>
+		<property name="testResultDaoImpl">
+			<ref local="testResultDaoImpl"></ref>
+		</property>
+		<property name="userDaoImpl">
+			<ref local="userDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<bean id="testUnitService" class="com.intel.cid.common.service.TestUnitService"
+		depends-on="testUnitDaoImpl">
+		<property name="testUnitDaoImpl">
+			<ref local="testUnitDaoImpl"></ref>
+		</property>
+		<property name="boardDaoImpl">
+			<ref local="boardDaoImpl"></ref>
+		</property>
+		<property name="testResultDaoImpl">
+			<ref local="testResultDaoImpl"></ref>
+		</property>
+		<property name="userDaoImpl">
+			<ref local="userDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<bean id="testResultService" class="com.intel.cid.common.service.TestResultService"
+		depends-on="testResultDaoImpl">
+		<property name="testResultDaoImpl">
+			<ref local="testResultDaoImpl"></ref>
+		</property>
+
+		<property name="subTestPlanDaoImpl">
+			<ref local="subTestPlanDaoImpl"></ref>
+		</property>
+		<property name="testPlanDaoImpl">
+			<ref local="testPlanDaoImpl"></ref>
+		</property>
+		<property name="testUnitDaoImpl">
+			<ref local="testUnitDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<bean id="testSuiteService" class="com.intel.cid.common.service.TestSuiteService"
+		depends-on="testSuiteDaoImpl">
+		<property name="testSuiteDaoImpl">
+			<ref local="testSuiteDaoImpl"></ref>
+		</property>
+		<property name="testCaseDaoImpl">
+			<ref local="testCaseDaoImpl"></ref>
+		</property>
+		<property name="caseSuiteMapImpl">
+			<ref local="caseSuiteMapImpl"></ref>
+		</property>
+		<property name="featureDaoImpl">
+			<ref local="featureDaoImpl"></ref>
+		</property>
+		<property name="oSDaoImpl">
+			<ref local="oSDaoImpl"></ref>
+		</property>
+		<property name="testResultDaoImpl">
+			<ref local="testResultDaoImpl"></ref>
+		</property>		
+		<property name="subTestPlanDaoImpl">
+			<ref local="subTestPlanDaoImpl"></ref>
+		</property>
+		<property name="testPlanDaoImpl">
+			<ref local="testPlanDaoImpl"></ref>
+		</property>
+		<property name="testUnitDaoImpl">
+			<ref local="testUnitDaoImpl"></ref>
+		</property>
+		<property name="testExecutionDaoImpl">
+			<ref local="testExecutionDaoImpl"></ref>
+		</property>
+
+		<property name="planMapDaoImpl">
+			<ref local="planMapDaoImpl"></ref>
+		</property>
+	</bean>
+	<bean id="testTypeService" class="com.intel.cid.common.service.TestTypeService"
+		depends-on="testTypeDaoImpl">
+		<property name="testTypeDaoImpl">
+			<ref local="testTypeDaoImpl"></ref>
+		</property>
+
+	</bean>
+
+	<bean id="userService" class="com.intel.cid.common.service.UserService"
+		depends-on="userDaoImpl">
+		<property name="userDaoImpl">
+			<ref local="userDaoImpl"></ref>
+		</property>
+		<property name="teamDaoImpl">
+			<ref local="teamDaoImpl"></ref>
+		</property>
+	</bean>
+
+
+	<bean id="testResultXmlResolverService"
+		class="com.intel.cid.common.service.TestResultXmlResolverService"
+		depends-on="userDaoImpl">
+		<property name="subTestPlanDaoImpl">
+			<ref local="subTestPlanDaoImpl"></ref>
+		</property>
+		<property name="testPlanDaoImpl">
+			<ref local="testPlanDaoImpl"></ref>
+		</property>
+		<property name="testExecutionDaoImpl">
+			<ref local="testExecutionDaoImpl"></ref>
+		</property>
+		<property name="testUnitDaoImpl">
+			<ref local="testUnitDaoImpl"></ref>
+		</property>
+		<property name="planMapDaoImpl">
+			<ref local="planMapDaoImpl"></ref>
+		</property>
+		<property name="testResultDaoImpl">
+			<ref local="testResultDaoImpl"></ref>
+		</property>
+		<property name="testCaseDaoImpl">
+			<ref local="testCaseDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<bean id="excelResolverService" class="com.intel.cid.common.service.ExcelResolverService"
+		depends-on="jdbcTemplate" scope="prototype">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+		<property name="testTypeDaoImpl">
+			<ref local="testTypeDaoImpl"></ref>
+		</property>
+		<property name="teamDaoImpl">
+			<ref local="teamDaoImpl"></ref>
+		</property>
+		<property name="oSDaoImpl">
+			<ref local="oSDaoImpl"></ref>
+		</property>
+		<property name="testExecutionDaoImpl">
+			<ref local="testExecutionDaoImpl"></ref>
+		</property>
+		<property name="subComponentDaoImpl">
+			<ref local="subComponentDaoImpl"></ref>
+		</property>
+		<property name="componentDaoImpl">
+			<ref local="componentDaoImpl"></ref>
+		</property>
+
+		<property name="userDaoImpl">
+			<ref local="userDaoImpl"></ref>
+		</property>
+		<property name="featureDaoImpl">
+			<ref local="featureDaoImpl"></ref>
+		</property>
+		<property name="testCaseDaoImpl">
+			<ref local="testCaseDaoImpl"></ref>
+		</property>
+		<property name="projectDaoImpl">
+			<ref local="projectDaoImpl"></ref>
+		</property>
+		<property name="testResultDaoImpl">
+			<ref local="testResultDaoImpl"></ref>
+		</property>
+	</bean>
+
+
+	<bean id="transformService"
+		class="com.intel.cid.common.service.XTP_ITMS_TestCase_Transform"
+		depends-on="jdbcTemplate" scope="prototype">
+		<property name="userJdbcTemplate">
+			<ref local="jdbcTemplate"></ref>
+		</property>
+		<property name="testTypeDaoImpl">
+			<ref local="testTypeDaoImpl"></ref>
+		</property>
+		<property name="platformDaoImpl">
+			<ref local="platformDaoImpl"></ref>
+		</property>
+		<property name="teamDaoImpl">
+			<ref local="teamDaoImpl"></ref>
+		</property>
+		<property name="oSDaoImpl">
+			<ref local="oSDaoImpl"></ref>
+		</property>
+		<property name="subComponentDaoImpl">
+			<ref local="subComponentDaoImpl"></ref>
+		</property>
+		<property name="componentDaoImpl">
+			<ref local="componentDaoImpl"></ref>
+		</property>
+		<property name="userDaoImpl">
+			<ref local="userDaoImpl"></ref>
+		</property>
+		<property name="featureDaoImpl">
+			<ref local="featureDaoImpl"></ref>
+		</property>
+		<property name="testCaseDaoImpl">
+			<ref local="testCaseDaoImpl"></ref>
+		</property>
+	</bean>
+	<bean id="dBBackupService" class="com.intel.cid.common.service.DBBackupService">
+		<property name="testPlanDaoImpl">
+			<ref local="testPlanDaoImpl"></ref>
+		</property>
+		<property name="testPlanTrackDaoImpl">
+			<ref local="testPlanTrackDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<bean id="mediaParametersService" class="com.intel.cid.common.service.MediaParametersService"
+		depends-on="mediaParametersDaoImpl">
+		<property name="mediaParametersDaoImpl">
+			<ref local="mediaParametersDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<bean id="testExecutionService" class="com.intel.cid.common.service.TestExecutionService"
+		depends-on="testExecutionDaoImpl">
+		<property name="testExecutionDaoImpl">
+			<ref local="testExecutionDaoImpl"></ref>
+		</property>
+		<property name="testResultDaoImpl">
+			<ref local="testResultDaoImpl"></ref>
+		</property>
+	</bean>
+
+	<!-- service class initiation -->
+
+
+	<!-- Action class initiation -->
+
+	<bean id="boardAction" class="com.intel.cid.common.action.BoardAction"
+		depends-on="boardService" scope="prototype">
+		<property name="boardService">
+			<ref local="boardService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+		<property name="boardStateService">
+			<ref local="boardStateService"></ref>
+		</property>
+	</bean>
+
+	<bean id="componentAction" class="com.intel.cid.common.action.ComponentAction"
+		depends-on="componentService" scope="prototype">
+		<property name="componentService">
+			<ref local="componentService"></ref>
+		</property>
+		<property name="subComponentService">
+			<ref local="subComponentService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="featureService">
+			<ref local="featureService"></ref>
+		</property>
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+	</bean>
+
+	<bean id="subComponentAction" class="com.intel.cid.common.action.SubComponentAction"
+		depends-on="componentService" scope="prototype">
+		<property name="subComponentService">
+			<ref local="subComponentService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="featureService">
+			<ref local="featureService"></ref>
+		</property>
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+	</bean>
+	<bean id="featureAction" class="com.intel.cid.common.action.FeatureAction"
+		depends-on="featureService" scope="prototype">
+		<property name="featureService">
+			<ref local="featureService"></ref>
+		</property>
+		<property name="componentService">
+			<ref local="componentService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+	</bean>
+	<bean id="oSAction" class="com.intel.cid.common.action.OSAction"
+		depends-on="oSService" scope="prototype">
+		<property name="oSService">
+			<ref local="oSService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+	</bean>
+
+	<bean id="executionOSAction" class="com.intel.cid.common.action.ExecutionOSAction"
+		depends-on="executionOSService" scope="prototype">
+		<property name="executionOSService">
+			<ref local="executionOSService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+	</bean>
+
+
+
+
+	<bean id="buildAction" class="com.intel.cid.common.action.BuildAction"
+		depends-on="buildService" scope="prototype">
+		<property name="buildService">
+			<ref local="buildService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+	</bean>
+
+	<bean id="phaseAction" class="com.intel.cid.common.action.PhaseAction"
+		depends-on="phaseService" scope="prototype">
+		<property name="phaseService">
+			<ref local="phaseService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+	</bean>
+	<bean id="executionPhaseAction" class="com.intel.cid.common.action.ExecutionPhaseAction"
+		depends-on="executionPhaseService" scope="prototype">
+		<property name="executionPhaseService">
+			<ref local="executionPhaseService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+	</bean>
+
+
+	<bean id="testEnvAction" class="com.intel.cid.common.action.TestEnvAction"
+		depends-on="testEnvService" scope="prototype">
+		<property name="testEnvService">
+			<ref local="testEnvService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+	</bean>
+	<bean id="targetAction" class="com.intel.cid.common.action.TargetAction"
+		depends-on="targetService" scope="prototype">
+		<property name="targetService">
+			<ref local="targetService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+	</bean>
+
+	<bean id="platformAction" class="com.intel.cid.common.action.PlatformAction"
+		depends-on="platformService" scope="prototype">
+		<property name="platformService">
+			<ref local="platformService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+	</bean>
+
+	<bean id="subTestPlanAction" class="com.intel.cid.common.action.SubTestPlanAction"
+		depends-on="subTestPlanService" scope="prototype">
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="boardService">
+			<ref local="boardService"></ref>
+		</property>
+
+		<property name="testUnitService">
+			<ref local="testUnitService"></ref>
+		</property>
+		<property name="componentService">
+			<ref local="componentService"></ref>
+		</property>
+		<property name="subComponentService">
+			<ref local="subComponentService"></ref>
+		</property>
+		<property name="mediaParametersService">
+			<ref local="mediaParametersService"></ref>
+		</property>
+		<property name="oSService">
+			<ref local="oSService"></ref>
+		</property>
+		<property name="testTypeService">
+			<ref local="testTypeService"></ref>
+		</property>
+		<property name="platformService">
+			<ref local="platformService"></ref>
+
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+		<property name="featureService">
+			<ref local="featureService"></ref>
+		</property>
+		<property name="testSuiteService">
+			<ref local="testSuiteService"></ref>
+		</property>
+		<property name="subTestPlanService">
+			<ref local="subTestPlanService"></ref>
+		</property>
+		<property name="testPlanService">
+			<ref local="testPlanService"></ref>
+		</property>
+		<property name="testResultXmlResolverService">
+			<ref local="testResultXmlResolverService"></ref>
+		</property>
+		<property name="testResultService">
+			<ref local="testResultService"></ref>
+		</property>
+		<property name="targetService">
+			<ref local="targetService"></ref>
+		</property>
+		<property name="phaseService">
+			<ref local="phaseService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+		<property name="executionOSService">
+			<ref local="executionOSService"></ref>
+		</property>
+	</bean>
+	<bean id="projectAction" class="com.intel.cid.common.action.ProjectAction"
+		depends-on="projectSerivce" scope="prototype">
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+	</bean>
+
+
+
+	<bean id="teamAction" class="com.intel.cid.common.action.TeamAction"
+		depends-on="teamService" scope="prototype">
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="transformService">
+			<ref local="transformService"></ref>
+		</property>
+	</bean>
+
+	<bean id="testCaseAction" class="com.intel.cid.common.action.TestCaseAction"
+		depends-on="testCaseService" scope="prototype">
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="boardService">
+			<ref local="boardService"></ref>
+		</property>
+
+		<property name="componentService">
+			<ref local="componentService"></ref>
+		</property>
+
+		<property name="subComponentService">
+			<ref local="subComponentService"></ref>
+		</property>
+		<property name="testTypeService">
+			<ref local="testTypeService"></ref>
+		</property>
+		<property name="platformService">
+			<ref local="platformService"></ref>
+
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+		<property name="oSService">
+			<ref local="oSService"></ref>
+		</property>
+		<property name="featureService">
+			<ref local="featureService"></ref>
+		</property>
+		<property name="testSuiteService">
+			<ref local="testSuiteService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+	</bean>
+
+	<bean id="testPlanAction" class="com.intel.cid.common.action.TestPlanAction"
+		depends-on="testPlanService" scope="prototype">
+		<property name="testPlanService">
+			<ref local="testPlanService"></ref>
+		</property>
+
+		<property name="testUnitService">
+			<ref local="testUnitService"></ref>
+		</property>
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="boardService">
+			<ref local="boardService"></ref>
+		</property>
+
+		<property name="componentService">
+			<ref local="componentService"></ref>
+		</property>
+		<property name="subComponentService">
+			<ref local="subComponentService"></ref>
+		</property>
+		<property name="oSService">
+			<ref local="oSService"></ref>
+		</property>
+		<property name="testTypeService">
+			<ref local="testTypeService"></ref>
+		</property>
+		<property name="platformService">
+			<ref local="platformService"></ref>
+
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+		<property name="featureService">
+			<ref local="featureService"></ref>
+		</property>
+		<property name="testSuiteService">
+			<ref local="testSuiteService"></ref>
+		</property>
+		<property name="subTestPlanService">
+			<ref local="subTestPlanService"></ref>
+		</property>
+
+		<property name="reportDaoImp">
+			<ref local="reportDaoImp"></ref>
+		</property>
+		<property name="testResultService">
+			<ref local="testResultService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+		<property name="phaseService">
+			<ref local="phaseService"></ref>
+		</property>
+	</bean>
+
+	<bean id="testUnitAction" class="com.intel.cid.common.action.TestUnitAction"
+		depends-on="testUnitService" scope="prototype">
+
+		<property name="testUnitService">
+			<ref local="testUnitService"></ref>
+		</property>
+
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="boardService">
+			<ref local="boardService"></ref>
+		</property>
+		<property name="testResultService">
+			<ref local="testResultService"></ref>
+		</property>
+		<property name="testSuiteService">
+			<ref local="testSuiteService"></ref>
+		</property>
+
+		<property name="subTestPlanService">
+			<ref local="subTestPlanService"></ref>
+		</property>
+		<property name="testPlanService">
+			<ref local="testPlanService"></ref>
+		</property>
+
+	</bean>
+
+
+
+
+	<bean id="testSuiteAction" class="com.intel.cid.common.action.TestSuiteAction"
+		depends-on="testSuiteService" scope="prototype">
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+		<property name="subComponentService">
+			<ref local="subComponentService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="boardService">
+			<ref local="boardService"></ref>
+		</property>
+
+		<property name="componentService">
+			<ref local="componentService"></ref>
+		</property>
+
+		<property name="oSService">
+			<ref local="oSService"></ref>
+		</property>
+		<property name="testTypeService">
+			<ref local="testTypeService"></ref>
+		</property>
+		<property name="platformService">
+			<ref local="platformService"></ref>
+
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+		<property name="featureService">
+			<ref local="featureService"></ref>
+		</property>
+		<property name="excelResolverService">
+			<ref local="excelResolverService"></ref>
+		</property>
+		<property name="testSuiteService">
+			<ref local="testSuiteService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+	</bean>
+
+	<bean id="testTypeAction" class="com.intel.cid.common.action.TestTypeAction"
+		depends-on="testTypeService" scope="prototype">
+		<property name="testTypeService">
+			<ref local="testTypeService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+	</bean>
+
+	<bean id="boardStateAction" class="com.intel.cid.common.action.BoardStateAction"
+		depends-on="boardStateService" scope="prototype">
+		<property name="boardStateService">
+			<ref local="boardStateService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+	</bean>
+
+	<bean id="userAction" class="com.intel.cid.common.action.UserAction"
+		depends-on="userService" scope="prototype">
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+	</bean>
+
+	<bean id="reportCenterAction" class="com.intel.cid.common.action.ReportCenterAction"
+		depends-on="reportDaoImp" scope="prototype">
+		<property name="reportDaoImp">
+			<ref local="reportDaoImp"></ref>
+		</property>
+		<property name="testExecutionService">
+			<ref local="testExecutionService"></ref>
+		</property>
+		<property name="testPlanService">
+			<ref local="testPlanService"></ref>
+		</property>
+		<property name="testCaseService">
+			<ref local="testCaseService"></ref>
+		</property>
+		<property name="testResultService">
+			<ref local="testResultService"></ref>
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+		<property name="targetService">
+			<ref local="targetService"></ref>
+		</property>
+		<property name="subTestPlanService">
+			<ref local="subTestPlanService"></ref>
+		</property>
+	</bean>
+	<bean id="fileUploadAction" class="com.intel.cid.common.action.FileUploadAction"
+		depends-on="excelResolverService" scope="prototype">
+		<property name="excelResolverService">
+			<ref local="excelResolverService"></ref>
+		</property>
+		<property name="testResultXmlResolverService">
+			<ref local="testResultXmlResolverService"></ref>
+		</property>
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+	</bean>
+	<bean id="testExecutionAction" class="com.intel.cid.common.action.TestExecutionAction"
+		depends-on="testExecutionService" scope="prototype">
+		
+		<property name="userService">
+			<ref local="userService"></ref>
+		</property>
+		<property name="excelResolverService">
+			<ref local="excelResolverService"></ref>
+		</property>
+		<property name="testResultXmlResolverService">
+			<ref local="testResultXmlResolverService"></ref>
+		</property>
+		<property name="testTypeService">
+			<ref local="testTypeService"></ref>
+		</property>
+		<property name="subTestPlanService">
+			<ref local="subTestPlanService"></ref>
+		</property>
+		<property name="testExecutionService">
+			<ref local="testExecutionService"></ref>
+		</property>
+		<property name="testResultService">
+			<ref local="testResultService"></ref>
+		</property>
+		<property name="testPlanService">
+			<ref local="testPlanService"></ref>
+		</property>
+
+		<property name="projectSerivce">
+			<ref local="projectSerivce"></ref>
+		</property>
+
+		<property name="testEnvService">
+			<ref local="testEnvService"></ref>
+		</property>
+		<property name="executionOSService">
+			<ref local="executionOSService"></ref>
+		</property>
+		<property name="platformService">
+			<ref local="platformService"></ref>
+		</property>
+
+
+		<property name="buildService">
+			<ref local="buildService"></ref>
+		</property>
+
+		<property name="executionPhaseService">
+			<ref local="executionPhaseService"></ref>
+		</property>
+		<property name="teamService">
+			<ref local="teamService"></ref>
+		</property>
+
+
+	</bean>
+	<!-- timer -->
+	<bean id="methodInvokingJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="boardService" />
+		</property>
+		<property name="targetMethod">
+			<value>releaseBoard</value>
+		</property>
+	</bean>
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="methodInvokingJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 * * * * ?</value>
+		</property>
+	</bean>
+
+	<bean id="dbInvokingJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="dBBackupService" />
+		</property>
+		<property name="targetMethod">
+			<value>backUpDB</value>
+
+		</property>
+	</bean>
+	<bean id="dbcronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="dbInvokingJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 30 23 * * ?</value>
+		</property>
+	</bean>
+
+	<bean id="planInvokingJobDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="dBBackupService" />
+		</property>
+		<property name="targetMethod">
+			<value>backupTestPlan</value>
+		</property>
+	</bean>
+	<bean id="plancronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="planInvokingJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 59 23 * * ?</value>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="cronTrigger" />
+				<ref local="dbcronTrigger" />
+				<ref local="plancronTrigger" />
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- timer -->
+
+
+	<!-- service class initiation -->
+	<!-- transaction configuration start -->
+
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="userDataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager"></tx:annotation-driven>
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+
+			<tx:method name="list*" propagation="NOT_SUPPORTED"
+				read-only="true" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="interceptorPointCuts"
+			expression="execution(*
+		com.intel.cid.common.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts" />
+	</aop:config>
+	<!-- transaction configuration end -->
+
+</beans>

@@ -1,0 +1,96 @@
+2014:06:19 08:43:51 INFO DBBackupService:34 - DB Backup Started!
+2014:06:19 08:43:51 ERROR JobRunShell:211 - Job DEFAULT.planInvokingJobDetail threw an unhandled Exception: 
+org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'backupTestPlan' on target class [class com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd] failed; nested exception is java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:320)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:113)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:525)
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+
+	at com.intel.cid.common.service.DBBackupService.backupTestPlan(DBBackupService.java:109)
+	at com.intel.cid.common.service.DBBackupService$$FastClassByCGLIB$$a4847f8e.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.Cglib2AopProxy$CglibMethodInvocation.invokeJoinpoint(Cglib2AopProxy.java:689)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:622)
+	at com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd.backupTestPlan(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:273)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:311)
+	... 3 more
+2014:06:19 08:43:51 ERROR ErrorLogger:2185 - Job (DEFAULT.planInvokingJobDetail threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'backupTestPlan' on target class [class com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd] failed; nested exception is java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:525)
+Caused by: org.springframework.scheduling.quartz.JobMethodInvocationFailedException: Invocation of method 'backupTestPlan' on target class [class com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd] failed; nested exception is java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:320)
+	at org.springframework.scheduling.quartz.QuartzJobBean.execute(QuartzJobBean.java:113)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	The method listAllTestPlans(int) in the type TestPlanDaoImpl is not applicable for the arguments ()
+
+	at com.intel.cid.common.service.DBBackupService.backupTestPlan(DBBackupService.java:109)
+	at com.intel.cid.common.service.DBBackupService$$FastClassByCGLIB$$a4847f8e.invoke(<generated>)
+	at net.sf.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.Cglib2AopProxy$CglibMethodInvocation.invokeJoinpoint(Cglib2AopProxy.java:689)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:110)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:90)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.Cglib2AopProxy$DynamicAdvisedInterceptor.intercept(Cglib2AopProxy.java:622)
+	at com.intel.cid.common.service.DBBackupService$$EnhancerByCGLIB$$25fce2cd.backupTestPlan(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.util.MethodInvoker.invoke(MethodInvoker.java:273)
+	at org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean$MethodInvokingJob.executeInternal(MethodInvokingJobDetailFactoryBean.java:311)
+	... 3 more
+2014:06:19 08:43:55 INFO DBBackupService:96 - DB Backup Success!
+2014:06:19 08:45:00 INFO OSDaoImpl:59 - sql: select * from os
+2014:06:19 08:45:00 INFO OSDaoImpl:72 - result:[com.intel.cid.common.bean.OS@7cf883, com.intel.cid.common.bean.OS@9f784d, com.intel.cid.common.bean.OS@1930ebb, com.intel.cid.common.bean.OS@1ac1adf]
+2014:06:19 08:48:59 INFO TargetDaoImpl:61 - sql: select * from target
+2014:06:19 08:48:59 INFO TargetDaoImpl:74 - result:[com.intel.cid.common.bean.Target@c5119e, com.intel.cid.common.bean.Target@7b0fb, com.intel.cid.common.bean.Target@f44031, com.intel.cid.common.bean.Target@1a264f1]
+2014:06:19 08:48:59 INFO OSDaoImpl:40 - sql: select * from testenv
+2014:06:19 08:48:59 INFO OSDaoImpl:53 - result:[]
+2014:06:19 08:49:13 INFO OSDaoImpl:87 - sql:select  project.* ,team.*  from project left join team on project.teamid = team.teamid
+2014:06:19 08:49:13 INFO OSDaoImpl:96 - Result:[com.intel.cid.common.bean.Project@200d0c, com.intel.cid.common.bean.Project@389405, com.intel.cid.common.bean.Project@7df42c, com.intel.cid.common.bean.Project@129b073, com.intel.cid.common.bean.Project@1ff8c2a]
+2014:06:19 08:49:21 INFO OSDaoImpl:24 - sql:insert into testenv(enevName,projectId,desc) values('','7','')
+2014:06:19 08:49:21 INFO XmlBeanDefinitionReader:315 - Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2014:06:19 08:49:21 INFO SQLErrorCodesFactory:126 - SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+2014:06:19 08:51:34 INFO UserDaoImpl:414 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:19 08:51:34 INFO UserDaoImpl:423 - result:com.intel.cid.common.bean.User@103f4aa
+2014:06:19 08:51:37 INFO UserDaoImpl:414 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:19 08:51:37 INFO UserDaoImpl:423 - result:com.intel.cid.common.bean.User@4a4e31
+2014:06:19 08:51:37 INFO UserDaoImpl:431 - sql:select * from user where username='lixiaopix' and password='80473dda0b44b2ede37f1ba91485c4f4'
+2014:06:19 08:51:37 INFO UserDaoImpl:440 - result:com.intel.cid.common.bean.User@190ed52
+2014:06:19 08:51:37 INFO TeamDaoImpl:116 - sql:select * from team where exists( select * from user_team as map where map.teamid = team.teamid and map.userid=83)
+2014:06:19 08:51:41 INFO TestPlanDaoImpl:201 - queryTestPlanSize method sql:SELECT count(*) FROM testplan map where  map.owner='83'   and projectId = '-1' and releaseCycle = '-1'
+2014:06:19 08:51:41 INFO TestPlanDaoImpl:203 - queryTestPlanSize method result:0
+2014:06:19 08:51:41 INFO TestPlanDaoImpl:177 - queryTestPlanByPage method sql:select * from testplan t where  projectid in( SELECT a.projectid FROM project a, user_team b where a.teamid=b.teamid and b.userid='83')   and projectId = '-1' and releaseCycle = '-1' ORDER BY STARTDATE DESC limit 0,25
+2014:06:19 08:51:41 INFO TableProperties:1196 - I18nResourceProvider initialized to org.displaytag.localization.I18nJstlAdapter.
+2014:06:19 08:51:46 INFO OSDaoImpl:40 - sql: select * from testenv
+2014:06:19 08:51:46 INFO OSDaoImpl:53 - result:[]
+2014:06:19 08:51:48 INFO OSDaoImpl:87 - sql:select  project.* ,team.*  from project left join team on project.teamid = team.teamid
+2014:06:19 08:51:48 INFO OSDaoImpl:96 - Result:[com.intel.cid.common.bean.Project@1ce67ca, com.intel.cid.common.bean.Project@218d, com.intel.cid.common.bean.Project@9ac272, com.intel.cid.common.bean.Project@53ccba, com.intel.cid.common.bean.Project@1a5ee7c]
+2014:06:19 08:51:54 INFO OSDaoImpl:24 - sql:insert into testenv(enevName,projectId,desc) values('fasdf','6','fsdaf')
+2014:06:19 08:59:55 INFO TargetDaoImpl:61 - sql: select * from target
+2014:06:19 08:59:55 INFO TargetDaoImpl:74 - result:[com.intel.cid.common.bean.Target@7fbad7, com.intel.cid.common.bean.Target@1c37b8f, com.intel.cid.common.bean.Target@e51960, com.intel.cid.common.bean.Target@e51510]
+2014:06:19 08:59:57 INFO OSDaoImpl:87 - sql:select  project.* ,team.*  from project left join team on project.teamid = team.teamid
+2014:06:19 08:59:57 INFO OSDaoImpl:96 - Result:[com.intel.cid.common.bean.Project@1d74c03, com.intel.cid.common.bean.Project@1bf9980, com.intel.cid.common.bean.Project@1f6c439, com.intel.cid.common.bean.Project@1cc7f4b, com.intel.cid.common.bean.Project@b92956]

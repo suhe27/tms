@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestResults Project="STV_CLC" ReleaseCycle="STV_CLC_1.0.0_RC3_SKU4"
+	Execution="ex1" SubExecution="subex2" SubPlan="STV_CLC_perf" TAG="2014_07_11_09_32_34" Nic="Niantic" >
+	<TestUnit Name="STV_CLC_Func_64Bit_Kernel_Shumway62" >
+		<TestCase Automation="1" ID="stv_perf_smoke_002" TestType="Func"
+			Name="verify Stateless dynamic defalte with L3 compression crypto and de-compression using NULL encryption and HMAC_SHA512 authentication"
+			Timeout="300">
+			<ConfigFiles>dh895xcc_qa_dev0.conf,dh895xcc_qa_dev1.conf
+			</ConfigFiles>
+			<testfunctioncall>coPerf012(1000,100,1,1,0x01000100, 0x01010101)
+			</testfunctioncall>
+			<TestScript />
+		</TestCase>
+		
+		<TestCase Automation="1" ID="stv_perf_smoke_005" TestType="Func"
+			Name="run Stateless LZS with threads using L1, L3, L6, L9 compress and decompress, on Calgary Corpus using DP API - using enque"
+			Timeout="400">
+			<ConfigFiles>dh895xcc_qa_dev0_dp.conf,dh895xcc_qa_dev1_dp.conf
+			</ConfigFiles>
+			<testfunctioncall>dcDpPerf012(0,1,2)</testfunctioncall>
+			<TestScript />
+		</TestCase>
+		<TestCase Automation="1" ID="stv_perf_smoke_006" TestType="Func"
+			Name="Stateless Deflate decompression, DP API using enque" Timeout="400">
+			<ConfigFiles>dh895xcc_qa_dev0_dp.conf,dh895xcc_qa_dev1_dp.conf
+			</ConfigFiles>
+			<testfunctioncall>dcDpPerf002(0,1,10)</testfunctioncall>
+			<TestScript />
+		</TestCase>
+	</TestUnit>
+	<TestUnit Name="STV_CLC_Func_64Bit_Kernel_Shumway63">
+		<TestCase Automation="1" ID="stv_perf_smoke_002" TestType="Func"
+			Name="verify Stateless dynamic defalte with L3 compression crypto and de-compression using NULL encryption and HMAC_SHA512 authentication"
+			Timeout="300">
+			<ConfigFiles>dh895xcc_qa_dev0.conf,dh895xcc_qa_dev1.conf
+			</ConfigFiles>
+			<testfunctioncall>coPerf012(1000,100,1,1,0x01000100, 0x01010101)
+			</testfunctioncall>
+			<TestScript />
+		</TestCase>
+		
+		<TestCase Automation="1" ID="stv_perf_smoke_006" TestType="Func"
+			Name="Stateless Deflate decompression, DP API using enque" Timeout="400">
+			<ConfigFiles>dh895xcc_qa_dev0_dp.conf,dh895xcc_qa_dev1_dp.conf
+			</ConfigFiles>
+			<testfunctioncall>dcDpPerf002(0,1,10)</testfunctioncall>
+			<TestScript />
+		</TestCase>
+	</TestUnit>
+</TestResults>

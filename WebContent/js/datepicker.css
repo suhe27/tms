@@ -1,0 +1,110 @@
+.cellDate
+{
+    BACKGROUND-COLOR: #999999;
+    COLOR: #ffffff;
+    CURSOR: hand;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.cellDay
+{
+    BACKGROUND-COLOR: #666666;
+    COLOR: #ffffff;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.cellDaySunday
+{
+    BACKGROUND-COLOR: #990000;
+    COLOR: #ffffff;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.cellDateSunday
+{
+    BACKGROUND-COLOR: #d74848;
+    COLOR: #ffffff;
+    CURSOR: hand;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.cboMonth
+{
+    BACKGROUND-COLOR: #cccccc;
+    BORDER-BOTTOM: medium none;
+    BORDER-LEFT: medium none;
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+    COLOR: #000000;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt
+}
+.cboYear
+{
+    BACKGROUND-COLOR: #cccccc;
+    BORDER-BOTTOM: medium none;
+    BORDER-LEFT: medium none;
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+    COLOR: #000000;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt
+}
+.cellClose
+{
+    BACKGROUND-COLOR: #000000;
+    COLOR: #ffffff;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+}
+.cellHead
+{
+    BACKGROUND-COLOR: #000000;
+    COLOR: #ffffff;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.tableBgBorder
+{
+    BACKGROUND-COLOR: #cccccc
+}
+.linkClose
+{
+    COLOR: #ffffff;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.cellDateOver
+{
+    BACKGROUND-COLOR: #666666;
+    COLOR: #ffffff;
+    CURSOR: hand;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.cellDateOverSunday
+{
+    BACKGROUND-COLOR: #990000;
+    COLOR: #ffffff;
+    CURSOR: hand;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.cellEmpty
+{
+    COLOR: #ffffff;
+    FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none
+}
+.linkArrow {  font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 9pt; font-weight: bold; color: #FFFFFF; text-decoration: none}
+.cellDateToday { BACKGROUND-COLOR: #0099FF; COLOR: #ffffff; CURSOR: hand; FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif; FONT-SIZE: 9pt;  TEXT-DECORATION: none }
+.cellDateOverToday { BACKGROUND-COLOR: #0066CC; COLOR: #ffffff; CURSOR: hand; FONT-FAMILY: 宋体, Arial, Helvetica, sans-serif; FONT-SIZE: 9pt;  TEXT-DECORATION: none }

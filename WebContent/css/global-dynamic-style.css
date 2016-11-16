@@ -1,0 +1,26 @@
+  @import url( global-sitestyle.css );
+@import url( global-dynamicnav-style.css );
+BODY {
+	HEIGHT: 100%
+}
+HTML {
+	HEIGHT: 100%
+}
+.dynCntWrppr {
+	POSITION: static; MIN-WIDTH: 950px; WIDTH: 95%; HEIGHT: 20px; MARGIN-LEFT: auto; MARGIN-RIGHT: auto;MARGIN-BOTTOM:30px;
+}
+.box {
+	POSITION: relative; WIDTH: 100%; HEIGHT: auto
+}
+.siteBanner {
+	POSITION: relative; BORDER-LEFT: #006c9f 2px solid; WIDTH: 99.8%; WHITE-SPACE: nowrap; BACKGROUND: #006699 no-repeat ; FLOAT: none
+}
+.siteName {
+	LINE-HEIGHT: 55px; FONT-FAMILY: Neo Sans Intel, Verdana, Sans-Serif; FLOAT: left; COLOR: #ffffff; MARGIN-LEFT: 20px; FONT-SIZE: 26px; FONT-WEIGHT: bold
+}
+.siteImg {
+	MARGIN: 2px 0px 0px; FLOAT: right
+}
+.lastUpdated {
+	POSITION: absolute; TEXT-ALIGN: right; BOTTOM: 10px; COLOR: #aaaaaa; FONT-SIZE: 9px; RIGHT: 10px
+}

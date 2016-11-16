@@ -1,0 +1,47 @@
+a:link, a:visited
+{
+	font: 12px "ËÎÌו";
+	color: #1835d1;
+	text-decoration: none;
+}
+a:active, a:hover
+{
+	color: #f30;
+	text-decoration: underline;
+}
+
+form, ul, li, dl, dt, dd
+{
+	padding: 0px;
+	margin: 0px;
+}
+ul
+{
+	list-style-type: none;
+}
+
+/*FrameTabs*/
+#FrameTabs{ background:url(images/tab-strip-bg.gif) top repeat-x #D4E4F6; /*border-bottom:1px solid #f0f5fa;*/  padding:2px 0 1px;height:25px;*height:28px!important; position:relative;}
+#FrameTabs ul{display:block; /*border-bottom:1px solid #99bbe8;*/ height:24px; padding:0 4px;}
+ul.tab-strip{display:block;zoom:1;}
+ul.tab-strip-top{}
+.tab-left{background:transparent url(images/scroll-left.gif) no-repeat -18px 0;width:18px; height:23px;position:absolute;left:0;top:0;z-index:10;cursor:pointer; display:none;}
+.tab-left-over{background-position:0 0;}
+.tab-disabled{background-position:-36px 0;cursor:default;}
+.tab-right{ float:right;background:transparent url(images/scroll-right.gif) no-repeat 0 0;width:18px; height:23px;position:absolute;right:0;top:0;z-index:10;cursor:pointer;display:none;}
+.tab-right-over{background-position:-18px 0;}
+/*.tab-right-disabled{background-position:-36px 0;cursor:default;}*/
+.tab-strip-wrap{width:100%;overflow:hidden;position:relative;zoom:1;}
+.tab-strip-margin{margin-left:18px;margin-right:18px;}
+#FrameTabs li{ float:left;background:url(images/tabs-sprite.gif) left -201px repeat-x; height:21px; line-height:21px; margin-right:2px;}
+#FrameTabs li a{display:block; float:left; background:url(images/tabs-sprite.gif) left -51px no-repeat;height:21px; line-height:21px; color:#416aa3;  font-size:12px;text-decoration:none;padding-left:8px;}
+#FrameTabs li a.closeTab{ background:url(images/tabs-sprite.gif) right -351px no-repeat; padding:4px 6px 6px 5px; height:11px; cursor:pointer;}
+#FrameTabs li.FrameTabs_hover{ background-position:left -251px;}
+#FrameTabs li.FrameTabs_hover a{ background-position: left -101px;}
+#FrameTabs li.FrameTabs_hover a.closeTab{ background-position: right -401px;}
+#FrameTabs li.current{ background-position:left -151px; height:24px ; line-height:24px;}
+#FrameTabs li.current a{ background-position: left 0px; font-weight:bold;}
+#FrameTabs li.current a.closeTab{ background-position: right -301px;}
+#FrameTabs  li#newFrameTab{background:none; padding-top:4px; height:15px; padding-left:2px;}
+#FrameTabs  li#newFrameTab a{background:url(images/FrameTabs_Add.gif) left top no-repeat; width:15px; height:15px;}
+#FrameTabs  li#newFrameTab a:hover{ background-position:0 -15px;}

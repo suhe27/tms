@@ -1,0 +1,245 @@
+body {
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background: #E6EAE9;
+}
+
+#nav {
+	width: 18%;
+	font-family: "Arial";
+	margin: 10px 5px 5px 5px;
+	float: left;
+	clear: both;
+	position: fixed;
+}
+
+.statictittle {
+	font-size: 16px;
+	text-decoration: none;
+	font-weight: bold;
+	text-align: center;
+}
+
+.alignl {
+	font-weight: bold;
+	font-family: "Arail";
+	font-size: 16px;
+	text-align: left;
+}
+
+#div_main {
+	clear: both;
+	float: right;
+	left: 12%;
+	margin-right: auto;
+	margin-top: 35px;
+	position: fixed;
+	width: 80%;
+	height: 80%;
+	overflow: auto;
+	scrollbar-base-color: #DFC4AB;
+}
+
+#div_main a {
+	font-size: 15px;
+}
+
+#div_main textarea {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+#common_table {
+	border-collapse: collapse;
+	font: 13px Arail;
+	text-align: center;
+	width: 100%;
+}
+
+#sub_table {
+	border-collapse: collapse;
+	font: 15px Arail;
+	text-align: left;
+}
+
+#common_table .alignl input {
+	width: 38%;
+	height: 100%;
+	float:left;
+}
+
+#common_table td {
+	font-size: 15px;
+	text-decoration: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	word-break: break-all;
+}
+
+#common_table th {
+	text-decoration: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowarp;
+}
+
+fieldset {
+	padding-right: 0px;
+	margin-bottom: 5px;
+	width: 225px;
+	color: #333;
+	border: #06c dashed 1px;
+}
+
+.logintb {
+	width: 15%;
+	padding: 1px;
+	margin: 1px;
+}
+
+legend {
+	color: #086CA2;
+	font-weight: 800;
+	background: #fff;
+}
+
+.alignr {
+	font-size: 13px;
+	width: 10%;
+	text-align: right;
+}
+
+#menu,ul,li {
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+#menu a {
+	color: #4d4d4d;
+	text-decoration: none;
+}
+
+#menu a:hover {
+	color: #ff4800;
+}
+
+#menu {
+	width: 200px;
+	text-align: left;
+}
+
+#menu .item .title {
+	background: #376fb9 url(arrowdown.gif) no-repeat 180px 0;
+	height: 27px;
+	line-height: 27px;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "Arial";
+	border-bottom: 1px solid #261d2e;
+}
+
+#menu .item .title2 {
+	background: #376fb9 url(arrowup.gif) no-repeat 180px 0;
+	height: 27px;
+	line-height: 27px;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "Arial";
+	border-bottom: 1px solid #261d2e;
+}
+
+#menu .item a.title {
+	display: block;
+	color: #fff;
+	padding-left: 40px;
+}
+
+#menu .item ul {
+	list-style: none;
+	display: none;
+}
+
+#menu .item:hover ul {
+	display: block;
+}
+
+#menu .item ul li {
+	background-color: #96acca;
+	border-bottom: 1px solid #424155;
+}
+
+#menu .item ul li a {
+	display: block;
+	color: #2b3140;
+	padding-left: 40px;
+	height: 24px;
+	line-height: 24px;
+}
+
+#menu .item ul li a:hover {
+	background-color: #5e88c0;
+	color: #fff;
+}
+
+.white_content2 {
+	display: none;
+	background-color: #f9fff6;
+	border: 5px solid #009900;
+	text-align: center;
+	line-height: 25px;
+	font-size: 18px;
+	font-weight: bold;
+	z-index: 99;
+	width: 450px;
+	height: 150px;
+	left: 45%; /*FF IE7*/
+	top: 45%; /*FF IE7*/
+	margin-left: -150px !important; /*FF IE7 half of its width */
+	margin-top: -60px !important; /*FF IE7 half of its height*/
+	margin-top: 0px;
+	position: fixed !important; /*FF IE7*/
+	position: absolute; /*IE6*/
+	_top: expression(eval(document.compatMode &&             
+                         document.compatMode ==                     
+		   'CSS1Compat') ?      
+		      
+               documentElement.scrollTop +                 (  
+		  document.documentElement.clientHeight-this.offsetHeight )/ 2 :  
+		                      /*IE6*/             
+               document.body.scrollTop +                 (  
+		  document.body.clientHeight- this.clientHeight )/ 2 ); /*IE5 IE5.5*/
+}
+
+.blackMask {
+	background: none repeat scroll 0 0 #000000;
+	left: 0;
+	opacity: 0.75;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+#theme {
+	padding-left: 50%;
+	font-size: 18px;
+	color: blue;
+}
+
+.alignr {
+	text-align: right;
+}
+
+.td_alignl{
+	text-align: left;
+}
+
+.operation {
+	float: left;
+}

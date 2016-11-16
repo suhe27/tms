@@ -1,0 +1,15 @@
+.tfHeaderRow {
+	BACKGROUND-COLOR: #1a6cae;
+}
+.tfHeaderRow th {
+	COLOR: #ffffff; FONT-SIZE: small; FONT-WEIGHT: bold;
+}
+.tfHeaderColumn {
+	COLOR: #ffffff; FONT-SIZE: small; FONT-WEIGHT: bold;
+}
+.tfTitle {
+	COLOR: #1a6cae; FONT-SIZE: medium; FONT-WEIGHT: bold;
+}
+.tfSpotLight {
+	BACKGROUND-COLOR: #0033ff; COLOR: white;
+}
