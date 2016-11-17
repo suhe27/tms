@@ -99,8 +99,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<td>
 			<select name="testCase.userId" id="userId" style="width: 200px">
 				<option value="">- Select a value-</option>
-				<s:iterator value="#userList" id="user">
-					<option value="${user.userId }">${user.userName }</option>
+				<s:iterator value="#userList" id="user">		
+					<s:if test="#user.userName == #session.user.userName">
+						<option value="${user.userId }" selected="selected">${user.userName }</option>
+					</s:if>
+					<s:else>
+						<option value="${user.userId }">${user.userName }</option>
+					</s:else>
 				</s:iterator>
 			</select>
 			<span style="color:red;">*</span>

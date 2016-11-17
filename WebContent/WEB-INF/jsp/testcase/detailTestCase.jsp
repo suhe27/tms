@@ -221,7 +221,7 @@
 	<tr>
 		<td>用例编号:</td>
 		<td><input type="text" name="testCase.testCasealiasId"
-			id="testcasealiasId" value="${testcase.testCasealiasId}" style="width: 80%;"  /><span style="color:red;">*</span></td>
+			id="testcasealiasId" value="${testcase.testCasealiasId}" style="width: 80%;"  /></td>
 	</tr>
 	<tr>
 		<td>需求编号:</td>

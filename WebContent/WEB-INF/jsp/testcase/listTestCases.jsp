@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th style="width: 10%;">子模块</th>
 				<th style="width: 10%;">用例类型</th>
 				<th style="width: 10%;">自动化</th>
-				<th style="width: 10%;">用例编号</th>
+				<th style="width: 10%;">功能点</th>
 				<th style="width: 10%;">操作</th>
 			</tr>
 			</thead></display:caption>
@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<display:column  property="compName" />
 			<display:column  property="testTypeName" />
 			<display:column  property="autoName" />
-			<display:column  property="testCasealiasId" />
+			<display:column  property="subCompName" />
 			<display:column>
 				<a href="javascript:selectTestCaseClick(${row.testCaseId },${currPage });" style="color:#0059fd;">编辑</a>
 			</display:column>

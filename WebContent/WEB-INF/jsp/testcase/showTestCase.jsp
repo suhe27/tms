@@ -20,7 +20,7 @@
 
 <table class="form_table">
 	<tr>
-		<th colspan="2" class="form_head">用例详情</th>
+		<th colspan="2" class="form_head" style="table-layout:fixed;word-wrap:break-word; overflow:hidden;">用例详情</th>
 	</tr>
 	<tr>
 		<td>部门:</td>
@@ -132,20 +132,20 @@
 		<td class="alignl">
 		<s:if test="#testcase.teamId == 2"><a href="${testcase.configFiles }" target="_blank">${testcase.configFiles }</a></s:if>
 		<s:else>
-			${testcase.configFiles }
+			<pre>${testcase.configFiles }</pre>
 		</s:else></td>
 	</tr>
 	<tr>
 		<td>执行步骤:</td>
-		<td>${testcase.executionSteps}</td>
+		<td><pre>${testcase.executionSteps}</pre></td>
 	</tr>
 	<tr>
 		<td>期望结果:</td>
-		<td>${testcase.expectedResult}</td>
+		<td><pre>${testcase.expectedResult}</pre></td>
 	</tr>
 		<tr>
 		<td>用例描述:</td>
-		<td>${testcase.description}</td>
+		<td><pre>${testcase.description}</pre></td>
 	</tr>
 	<tr>
 		<td>创建日期:</td>
