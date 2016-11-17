@@ -5,3 +5,4 @@ build/*
 .project
 .metadata
 WebContent/WEB-INF/lib/*
+/build/

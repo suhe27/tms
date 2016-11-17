@@ -758,7 +758,7 @@ public class TestCaseDaoImpl implements TestCaseDao {
 	
 	public List<TestCase> listTestCaseNumInProjectByFeature(int id) {
 		String sql = "select b.FEATURENAME, count(*) as Num from testcase a left join feature b on a.featureid=b.FEATUREID "
-				+ "where a.PROJECTID='"+id+"' group by a.FEATUREID";
+				+ "where  (a.status <> 1 or a.status is null) and a.PROJECTID='"+id+"' group by a.FEATUREID";
 		logger.info("listTestCaseNumInProjectByFeature sql:" + sql);
 		@SuppressWarnings("unchecked")
 		List<TestCase> caseList = userJdbcTemplate.query(sql,
@@ -776,7 +776,7 @@ public class TestCaseDaoImpl implements TestCaseDao {
 	
 	public List<TestCase> listTestCaseNumInProjectByAuto(int id) {
 		String sql = "select b.AUTONAME, count(*) as Num from testcase a left join automation b on a.autoid=b.autoid "
-				+ "where a.PROJECTID='"+id+"' group by a.autoid";
+				+ "where (a.status <> 1 or a.status is null) and a.PROJECTID='"+id+"' group by a.autoid";
 		logger.info("listTestCaseNumInProjectByAuto sql:" + sql);
 		@SuppressWarnings("unchecked")
 		List<TestCase> caseList = userJdbcTemplate.query(sql,
